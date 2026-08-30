@@ -329,7 +329,8 @@ Konversi berhasil! Berikut 20 data teratas:
 
 #### NO2
 - Gambar Grafik
-![image](https://hackmd.io/_uploads/rk2eGQzdfg.png)
+
+![image](https://hackmd.io/_uploads/ByVGBXMuzg.png)
 
 - Tampilan CSV (20 Data teratas)
 
