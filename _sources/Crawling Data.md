@@ -3,7 +3,9 @@ title: Crawling Data
 
 ---
 
-# 1. Business Understanding
+
+# Crawling Data
+## 1. Business Understanding
 ## 1.1 Mengamati Kualitas Udara
 ### 1.1.1 Deskripsi Indeks Kualitas Udara
 Indeks Kualitas Udara (*Air Quality Index* / AQI atau di Indonesia dikenal sebagai ISPU - Indeks Standar Pencemar Udara) adalah indikator kuantitatif terstandardisasi yang digunakan untuk mengomunikasikan tingkat kebersihan atau polusi udara ambien kepada publik dan pemangku kebijakan. 
@@ -38,9 +40,9 @@ Kualitas udara di suatu daerah dipengaruhi oleh konsentrasi berbagai polutan atm
 * **Sumber Utama Emisi:** Aktivitas ekstraksi dan kebocoran distribusi gas alam/minyak bumi, sektor pertanian (fermentasi enterik peternakan), penanaman padi lahan basah, serta dekomposisi limbah organik di Tempat Pemrosesan Akhir (TPA).
 * **Dampak Kualitas Udara & Lingkungan:** Meskipun tidak beracun secara langsung pada konsentrasi ambien normal, metana berperan krusial sebagai pendorong utama pembentukan ozon di lapisan troposfer melalui reaksi fotokimia global, selain mempercepat perubahan iklim dan kenaikan suhu permukaan bumi.
 
-# 2.  Data Understanding
+## 2.  Data Understanding
 
-## 2.1 Collecting Data
+### 2.1 Collecting Data
 
 ### 2.1.1 Data Karbon Monoksida ($\text{CO}$)
 
@@ -328,7 +330,7 @@ Konversi berhasil! Berikut 20 data teratas:
 #### NO2
 - Gambar Grafik
 
-![image](https://hackmd.io/_uploads/BkyN-MG_Gl.png)
+![grafik CO](https://hackmd.io/_uploads/SJV1WQfuMe.png)
 
 - Tampilan CSV (20 Data teratas)
 
