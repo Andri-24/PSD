@@ -297,7 +297,6 @@ Wilayah kajian mencakup topografi yang bervariasi, mulai dari dataran rendah ind
 ### 2.2.2 Visualisasi Data Grafik(selama 30 hari)
 #### CO
 - Gambar Grafik
-
 ![image](https://hackmd.io/_uploads/ry3xbGGOfe.png)
 
 - Tampilan CSV (20 Data teratas)
@@ -329,8 +328,7 @@ Konversi berhasil! Berikut 20 data teratas:
 
 #### NO2
 - Gambar Grafik
-
-  ![image](https://hackmd.io/_uploads/rk2eGQzdfg.png)
+![image](https://hackmd.io/_uploads/rk2eGQzdfg.png)
 
 - Tampilan CSV (20 Data teratas)
 
