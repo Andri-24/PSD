@@ -3,7 +3,6 @@ title: Crawling Data
 
 ---
 
-
 # Crawling Data
 ## 1. Business Understanding
 ## 1.1 Mengamati Kualitas Udara
@@ -296,7 +295,9 @@ Wilayah kajian mencakup topografi yang bervariasi, mulai dari dataran rendah ind
 
 ### 2.2.2 Visualisasi Data Grafik(selama 30 hari)
 #### CO
+
 - Gambar Grafik
+
 ![image](https://hackmd.io/_uploads/ry3xbGGOfe.png)
 
 - Tampilan CSV (20 Data teratas)
