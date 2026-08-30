@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Business Understanding &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Crawling Data';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Kumpulan Materi Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FCrawling Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Crawling Data.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Business Understanding</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Business Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengamati-kualitas-udara">1.1 Mengamati Kualitas Udara</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-indeks-kualitas-udara">1.1.1 Deskripsi Indeks Kualitas Udara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsur-unsur-penentu-kualitas-udara">1.1.2 Unsur-Unsur Penentu Kualitas Udara</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-nitrogen-dioksida-text-no-2">a. Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-karbon-monoksida-text-co">b. Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-sulfur-dioksida-text-so-2">c. Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-metana-text-ch-4">d. Metana (<span class="math notranslate nohighlight">\(\text{CH}_4\)</span>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2.  Data Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collecting-data">2.1 Collecting Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-karbon-monoksida-text-co">2.1.1 Data Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-nitrogen-dioksida-text-no-2">2.1.2 Data Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Load Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sulfur-dioksida-text-so-2">2.1.3 Data Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Load Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-metana-text-ch-4">2.1.4 Data Metana (<span class="math notranslate nohighlight">\(\text{CH}_4\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Load Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">2.2 Eksplorasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">2.2.1 Visualisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-python-menampilkan-peta">Kode Python Menampilkan Peta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-peta">Gambar Peta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-wilayah-area-of-interest-aoi-kabupaten-mojokerto">Deskripsi Wilayah: Area of Interest (AOI) Kabupaten Mojokerto</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data-grafik-selama-30-hari">2.2.2 Visualisasi Data Grafik(selama 30 hari)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#co">CO</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no2">NO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#so2">SO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ch4">CH4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-outlier">2.2.3 Indetifikasi Outlier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-missing-value">2.2.4 Indetifikasi Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-noise-data">2.2.5 Identifikasi Noise Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
+<h1>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
+<section id="mengamati-kualitas-udara">
+<h2>1.1 Mengamati Kualitas Udara<a class="headerlink" href="#mengamati-kualitas-udara" title="Link to this heading">#</a></h2>
+<section id="deskripsi-indeks-kualitas-udara">
+<h3>1.1.1 Deskripsi Indeks Kualitas Udara<a class="headerlink" href="#deskripsi-indeks-kualitas-udara" title="Link to this heading">#</a></h3>
+<p>Indeks Kualitas Udara (<em>Air Quality Index</em> / AQI atau di Indonesia dikenal sebagai ISPU - Indeks Standar Pencemar Udara) adalah indikator kuantitatif terstandardisasi yang digunakan untuk mengomunikasikan tingkat kebersihan atau polusi udara ambien kepada publik dan pemangku kebijakan.</p>
+<p>Dalam perspektif <em>data science</em> dan <em>environmental analytics</em>, AQI berfungsi menyederhanakan data konsentrasi multivariat polutan kimia kompleks (seperti partikulat mikroskopis dan gas reaktif) menjadi skala numerik tunggal yang intuitif, umumnya disertai kode warna dan kategori dampak kesehatan (misalnya: <em>Baik</em>, <em>Sedang</em>, <em>Tidak Sehat</em>, hingga <em>Berbahaya</em>).</p>
+<p>Pengamatan kualitas udara berbasis data penginderaan jauh (<em>remote sensing</em>) satelit seperti <strong>Copernicus Sentinel-5P (TROPOMI)</strong> memungkinkan estimasi densitas kolom gas vertikal troposfer (<em>tropospheric vertical column density</em>) secara berkala, membantu mendeteksi tren spasial dan temporal dispersi emisi di suatu wilayah geografis.</p>
+</section>
+<hr class="docutils" />
+<section id="unsur-unsur-penentu-kualitas-udara">
+<h3>1.1.2 Unsur-Unsur Penentu Kualitas Udara<a class="headerlink" href="#unsur-unsur-penentu-kualitas-udara" title="Link to this heading">#</a></h3>
+<p>Kualitas udara di suatu daerah dipengaruhi oleh konsentrasi berbagai polutan atmosfer primer dan sekunder. Karakteristik kimia, sumber emisi, serta dampak dari masing-masing unsur polutan dijelaskan sebagai berikut:</p>
+<section id="a-nitrogen-dioksida-text-no-2">
+<h4>a. Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)<a class="headerlink" href="#a-nitrogen-dioksida-text-no-2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Deskripsi Kimiawi:</strong> Gas reaktif berwarna cokelat kemerahan dengan bau menyengat, tergolong dalam kelompok nitrogen oksida (<span class="math notranslate nohighlight">\(\text{NO}_x\)</span>).</p></li>
+<li><p><strong>Sumber Utama Emisi:</strong> Proses pembakaran pada suhu tinggi, terutama emisi kendaraan bermotor berbahan bakar fosil (transportasi jalan), pembangkit listrik tenaga uap/termal (PLTU), dan kawasan industri manufaktur.</p></li>
+<li><p><strong>Dampak Kualitas Udara &amp; Kesehatan:</strong> Merupakan prekursor utama pembentukan ozon troposferik (<span class="math notranslate nohighlight">\(\text{O}_3\)</span>) dan aerosol nitrat melalui reaksi fotokimia. Paparan <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> konsentrasi tinggi dapat mengiritasi saluran pernapasan, memperburuk kondisi asma, dan memicu penyakit paru obstruktif kronis (PPOK).</p></li>
+</ul>
+</section>
+<section id="b-karbon-monoksida-text-co">
+<h4>b. Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)<a class="headerlink" href="#b-karbon-monoksida-text-co" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Deskripsi Kimiawi:</strong> Gas tidak berwarna, tidak berbau, dan tidak berasa yang terbentuk dari oksidasi karbon yang tidak sempurna.</p></li>
+<li><p><strong>Sumber Utama Emisi:</strong> Pembakaran bahan bakar fosil yang tidak sempurna pada kendaraan transportasi, mesin industri, serta peristiwa pembakaran biomassa skala besar seperti kebakaran hutan dan lahan (karhutla).</p></li>
+<li><p><strong>Dampak Kualitas Udara &amp; Kesehatan:</strong> Memiliki waktu hidup (<em>atmospheric lifetime</em>) yang relatif panjang (sekitar beberapa minggu hingga bulan), menjadikannya <em>tracer</em> (pelacak) yang sangat baik untuk pergerakan polusi lintas wilayah (<em>transboundary pollution</em>). Di dalam tubuh manusia, CO mengikat hemoglobin jauh lebih kuat daripada oksigen, menurunkan kapasitas pengangkutan oksigen dalam darah.</p></li>
+</ul>
+</section>
+<section id="c-sulfur-dioksida-text-so-2">
+<h4>c. Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)<a class="headerlink" href="#c-sulfur-dioksida-text-so-2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Deskripsi Kimiawi:</strong> Gas tidak berwarna dengan aroma menyengat tajam yang sangat reaktif di atmosfer.</p></li>
+<li><p><strong>Sumber Utama Emisi:</strong> Pembakaran bahan bakar fosil yang mengandung sulfur tinggi (khususnya batu bara dan minyak bumi berat) pada PLTU, proses pemurnian minyak (<em>refinery</em>), industri peleburan logam, serta sumber alami berupa aktivitas vulkanik gunung berapi.</p></li>
+<li><p><strong>Dampak Kualitas Udara &amp; Kesehatan:</strong> Oksidasi <span class="math notranslate nohighlight">\(\text{SO}_2\)</span> di atmosfer menghasilkan aerosol sulfat dan asam sulfat (<span class="math notranslate nohighlight">\(\text{H}_2\text{SO}_4\)</span>), yang merupakan komponen utama fenomena hujan asam (<em>acid rain</em>). Gas ini menyebabkan bronkokonstriksi, iritasi mukosa, dan gangguan pernapasan akut.</p></li>
+</ul>
+</section>
+<section id="d-metana-text-ch-4">
+<h4>d. Metana (<span class="math notranslate nohighlight">\(\text{CH}_4\)</span>)<a class="headerlink" href="#d-metana-text-ch-4" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Deskripsi Kimiawi:</strong> Hidrokarbon paling sederhana berbentuk gas tanpa warna dan bau, merupakan salah satu gas rumah kaca (<em>Greenhouse Gas</em> / GHG) dengan potensi pemanasan global (<em>Global Warming Potential</em>) sekitar 28–36 kali lebih tinggi dibanding <span class="math notranslate nohighlight">\(\text{CO}_2\)</span> dalam rentang 100 tahun.</p></li>
+<li><p><strong>Sumber Utama Emisi:</strong> Aktivitas ekstraksi dan kebocoran distribusi gas alam/minyak bumi, sektor pertanian (fermentasi enterik peternakan), penanaman padi lahan basah, serta dekomposisi limbah organik di Tempat Pemrosesan Akhir (TPA).</p></li>
+<li><p><strong>Dampak Kualitas Udara &amp; Lingkungan:</strong> Meskipun tidak beracun secara langsung pada konsentrasi ambien normal, metana berperan krusial sebagai pendorong utama pembentukan ozon di lapisan troposfer melalui reaksi fotokimia global, selain mempercepat perubahan iklim dan kenaikan suhu permukaan bumi.</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
+<h1>2.  Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<section id="collecting-data">
+<h2>2.1 Collecting Data<a class="headerlink" href="#collecting-data" title="Link to this heading">#</a></h2>
+<section id="data-karbon-monoksida-text-co">
+<h3>2.1.1 Data Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)<a class="headerlink" href="#data-karbon-monoksida-text-co" title="Link to this heading">#</a></h3>
+<section id="load-data">
+<h4>Load Data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s5_co</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2025-08-24&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-08-24&quot;</span><span class="p">],</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">112.31</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.785</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">112.62</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.362</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;CO&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">s5_co</span> <span class="o">=</span> <span class="n">s5_co</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">s5_co</span> <span class="o">=</span> <span class="n">s5_co</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">)</span>
+
+<span class="n">job_co</span> <span class="o">=</span> <span class="n">s5_co</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mojokerto CO Extraction&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;mojokerto_co.nc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">send</span> <span class="s1">&#39;start&#39;</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">03</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">created</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">08</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">15</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">23</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">33</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">46</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">01</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">21</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">45</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">15</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">53</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">40</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301938404fb2a82fa5c953f9df3a&#39;</span><span class="p">:</span> <span class="n">finished</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-nitrogen-dioksida-text-no-2">
+<h3>2.1.2 Data Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)<a class="headerlink" href="#data-nitrogen-dioksida-text-no-2" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h4>Load Data<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s5_no2</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2025-08-24&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-08-24&quot;</span><span class="p">],</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">112.31</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.785</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">112.62</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.362</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">s5_no2</span> <span class="o">=</span> <span class="n">s5_no2</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">s5_no2</span> <span class="o">=</span> <span class="n">s5_no2</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">)</span>
+
+<span class="n">job_no2</span> <span class="o">=</span> <span class="n">s5_no2</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mojokerto NO2 Extraction&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;mojokerto_no2.nc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">send</span> <span class="s1">&#39;start&#39;</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">created</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">07</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">14</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">22</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">32</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">45</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">19</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">44</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">14</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">51</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">38</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301948074764bee9dd2f709210d7&#39;</span><span class="p">:</span> <span class="n">finished</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-sulfur-dioksida-text-so-2">
+<h3>2.1.3 Data Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)<a class="headerlink" href="#data-sulfur-dioksida-text-so-2" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h4>Load Data<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s5_so2</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2025-08-24&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-08-24&quot;</span><span class="p">],</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">112.31</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.785</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">112.62</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.362</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SO2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">s5_so2</span> <span class="o">=</span> <span class="n">s5_so2</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">s5_so2</span> <span class="o">=</span> <span class="n">s5_so2</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">)</span>
+
+<span class="n">job_so2</span> <span class="o">=</span> <span class="n">s5_so2</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mojokerto SO2 Extraction&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;mojokerto_so2.nc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">send</span> <span class="s1">&#39;start&#39;</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">created</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">07</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">14</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">22</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">32</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">44</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">44</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">14</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">52</span> <span class="n">Job</span> <span class="s1">&#39;j-2608301942294709b0c347d9b0bca5e4&#39;</span><span class="p">:</span> <span class="n">finished</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-metana-text-ch-4">
+<h3>2.1.4 Data Metana (<span class="math notranslate nohighlight">\(\text{CH}_4\)</span>)<a class="headerlink" href="#data-metana-text-ch-4" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h4>Load Data<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s5_ch4</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2025-08-24&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-08-24&quot;</span><span class="p">],</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">112.31</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.785</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">112.62</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.362</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;CH4&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">s5_ch4</span> <span class="o">=</span> <span class="n">s5_ch4</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">s5_ch4</span> <span class="o">=</span> <span class="n">s5_ch4</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">)</span>
+
+<span class="n">job_ch4</span> <span class="o">=</span> <span class="n">s5_ch4</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mojokerto CH4 Extraction&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;mojokerto_ch4.nc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">send</span> <span class="s1">&#39;start&#39;</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">08</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">14</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">22</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">32</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">45</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">01</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">20</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">44</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">14</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">52</span> <span class="n">Job</span> <span class="s1">&#39;j-26083019531846959aa92af1ad13992b&#39;</span><span class="p">:</span> <span class="n">finished</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="eksplorasi-data">
+<h2>2.2 Eksplorasi Data<a class="headerlink" href="#eksplorasi-data" title="Link to this heading">#</a></h2>
+<section id="visualisasi-data">
+<h3>2.2.1 Visualisasi Data<a class="headerlink" href="#visualisasi-data" title="Link to this heading">#</a></h3>
+<section id="kode-python-menampilkan-peta">
+<h4>Kode Python Menampilkan Peta<a class="headerlink" href="#kode-python-menampilkan-peta" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+
+<span class="c1"># 1. Definisi AOI Kabupaten Mojokerto</span>
+<span class="n">aoi</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;nama&quot;</span><span class="p">:</span> <span class="s2">&quot;Kabupaten Mojokerto&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;provinsi&quot;</span><span class="p">:</span> <span class="s2">&quot;Jawa Timur&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">[</span>
+                        <span class="p">[</span><span class="mf">112.445</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.362</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.512</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.375</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.57</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.42</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.605</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.51</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.62</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.62</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.595</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.725</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.535</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.785</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.47</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.76</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.395</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.68</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.33</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.595</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.31</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.49</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.345</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.415</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.38</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mf">112.445</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.362</span><span class="p">],</span>
+                    <span class="p">]</span>
+                <span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># 2. Inisialisasi peta interaktif di titik tengah Mojokerto (Lat: -7.55, Lon: 112.45)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">7.55</span><span class="p">,</span> <span class="mf">112.45</span><span class="p">],</span>
+    <span class="n">zoom_start</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="s2">&quot;CartoDB positron&quot;</span><span class="p">,</span>  <span class="c1"># Pilihan basemap: &quot;OpenStreetMap&quot;, &quot;CartoDB positron&quot;, atau &quot;OpenTopoMap&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Poligon AOI ke Peta</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span>
+    <span class="n">aoi</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Batas AOI&quot;</span><span class="p">,</span>
+    <span class="n">style_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">feature</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;fillColor&quot;</span><span class="p">:</span> <span class="s2">&quot;#ff7800&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;#e65100&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span>
+        <span class="s2">&quot;fillOpacity&quot;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+        <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;nama&quot;</span><span class="p">,</span> <span class="s2">&quot;provinsi&quot;</span><span class="p">],</span> <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Wilayah:&quot;</span><span class="p">,</span> <span class="s2">&quot;Provinsi:&quot;</span><span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">()</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="gambar-peta">
+<h4>Gambar Peta<a class="headerlink" href="#gambar-peta" title="Link to this heading">#</a></h4>
+<iframe 
+  src="https://andri-24.github.io/peta-aoi-kbtpnmjkrt/peta_aoi_mojokerto.html" 
+  width="100%" 
+  height="500px" 
+  style="border: 1px solid #ccc; border-radius: 8px;">
+</iframe>
+</section>
+<section id="deskripsi-wilayah-area-of-interest-aoi-kabupaten-mojokerto">
+<h4>Deskripsi Wilayah: Area of Interest (AOI) Kabupaten Mojokerto<a class="headerlink" href="#deskripsi-wilayah-area-of-interest-aoi-kabupaten-mojokerto" title="Link to this heading">#</a></h4>
+<p>Peta interaktif di atas merepresentasikan batas spasial Area of Interest (AOI) yang digunakan sebagai acuan pemrosesan data penginderaan jauh atmosfer dari satelit Sentinel-5P Level-2 (TROPOMI) melalui platform openEO Copernicus Data Space Ecosystem.</p>
+<ul class="simple">
+<li><p>Nama Wilayah: Kabupaten Mojokerto, Provinsi Jawa Timur, Indonesia</p></li>
+<li><p>Geometri Spasial: Poligon batas administratif tertutup (14 titik koordinat verteks)</p></li>
+<li><p>Cakupan Bounding Box (<span class="math notranslate nohighlight">\(spatial\_extent\)</span>):
+– Bujur (Longitude): <span class="math notranslate nohighlight">\(112.31^\circ \text{ BT} - 112.62^\circ \text{ BT}\)</span>
+– Lintang (Latitude): <span class="math notranslate nohighlight">\(7.362^\circ \text{ LS} - 7.785^\circ \text{ LS}\)</span></p></li>
+<li><p>Karakteristik Wilayah:
+Wilayah kajian mencakup topografi yang bervariasi, mulai dari dataran rendah industri dan permukiman di sisi utara/tengah yang berbatasan langsung dengan poros ekonomi Surabaya–Sidoarjo, hingga kawasan dataran tinggi dan pegunungan di sisi selatan (lereng Gunung Arjuno-Welirang dan Anjasmoro).</p></li>
+</ul>
+</section>
+</section>
+<section id="visualisasi-data-grafik-selama-30-hari">
+<h3>2.2.2 Visualisasi Data Grafik(selama 30 hari)<a class="headerlink" href="#visualisasi-data-grafik-selama-30-hari" title="Link to this heading">#</a></h3>
+<section id="co">
+<h4>CO<a class="headerlink" href="#co" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Gambar Grafik</p></li>
+</ul>
+<p><img alt="image" src="https://hackmd.io/_uploads/ry3xbGGOfe.png" /></p>
+<ul class="simple">
+<li><p>Tampilan CSV (20 Data teratas)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Konversi berhasil! Berikut 20 data teratas:
+            t  feature        CO     lat        lon feature_names
+0  2025-08-24        0  0.031929 -7.5525  112.46635     feature_0
+1  2025-08-25        0  0.032055 -7.5525  112.46635     feature_0
+2  2025-08-26        0  0.030631 -7.5525  112.46635     feature_0
+3  2025-08-27        0  0.030621 -7.5525  112.46635     feature_0
+4  2025-08-28        0  0.025088 -7.5525  112.46635     feature_0
+5  2025-08-29        0  0.029343 -7.5525  112.46635     feature_0
+6  2025-08-30        0  0.027159 -7.5525  112.46635     feature_0
+7  2025-08-31        0  0.023147 -7.5525  112.46635     feature_0
+8  2025-09-01        0  0.028392 -7.5525  112.46635     feature_0
+9  2025-09-02        0  0.022924 -7.5525  112.46635     feature_0
+10 2025-09-03        0  0.025745 -7.5525  112.46635     feature_0
+11 2025-09-04        0  0.025416 -7.5525  112.46635     feature_0
+12 2025-09-05        0  0.030017 -7.5525  112.46635     feature_0
+13 2025-09-06        0  0.029885 -7.5525  112.46635     feature_0
+14 2025-09-07        0  0.030773 -7.5525  112.46635     feature_0
+15 2025-09-08        0  0.025960 -7.5525  112.46635     feature_0
+16 2025-09-09        0  0.032209 -7.5525  112.46635     feature_0
+17 2025-09-10        0  0.029978 -7.5525  112.46635     feature_0
+18 2025-09-11        0  0.026548 -7.5525  112.46635     feature_0
+19 2025-09-12        0  0.030527 -7.5525  112.46635     feature_0
+</pre></div>
+</div>
+</section>
+<section id="no2">
+<h4>NO2<a class="headerlink" href="#no2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Gambar Grafik</p></li>
+</ul>
+<p><img alt="image" src="https://hackmd.io/_uploads/BkyN-MG_Gl.png" /></p>
+<ul class="simple">
+<li><p>Tampilan CSV (20 Data teratas)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Konversi berhasil! Berikut 20 data teratas:
+            t  feature       NO2     lat        lon feature_names
+0  2025-08-24        0  0.000037 -7.5525  112.46635     feature_0
+1  2025-08-25        0  0.000050 -7.5525  112.46635     feature_0
+2  2025-08-26        0  0.000081 -7.5525  112.46635     feature_0
+3  2025-08-27        0  0.000050 -7.5525  112.46635     feature_0
+4  2025-08-30        0  0.000036 -7.5525  112.46635     feature_0
+5  2025-08-31        0  0.000021 -7.5525  112.46635     feature_0
+6  2025-09-01        0  0.000034 -7.5525  112.46635     feature_0
+7  2025-09-02        0  0.000018 -7.5525  112.46635     feature_0
+8  2025-09-03        0  0.000025 -7.5525  112.46635     feature_0
+9  2025-09-04        0  0.000027 -7.5525  112.46635     feature_0
+10 2025-09-05        0  0.000050 -7.5525  112.46635     feature_0
+11 2025-09-06        0  0.000045 -7.5525  112.46635     feature_0
+12 2025-09-07        0  0.000080 -7.5525  112.46635     feature_0
+13 2025-09-08        0  0.000097 -7.5525  112.46635     feature_0
+14 2025-09-10        0  0.000050 -7.5525  112.46635     feature_0
+15 2025-09-11        0  0.000028 -7.5525  112.46635     feature_0
+16 2025-09-12        0  0.000047 -7.5525  112.46635     feature_0
+17 2025-09-13        0  0.000047 -7.5525  112.46635     feature_0
+18 2025-09-14        0  0.000047 -7.5525  112.46635     feature_0
+19 2025-09-15        0  0.000056 -7.5525  112.46635     feature_0
+</pre></div>
+</div>
+</section>
+<section id="so2">
+<h4>SO2<a class="headerlink" href="#so2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Gambar Grafik</p></li>
+</ul>
+<p><img alt="image" src="https://hackmd.io/_uploads/B1bSWGzuze.png" /></p>
+<ul class="simple">
+<li><p>Tampilan CSV (20 Data teratas)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Konversi berhasil! Berikut 20 data teratas:
+            t  feature       SO2     lat        lon feature_names
+0  2025-08-24        0  0.000332 -7.5525  112.46635     feature_0
+1  2025-08-25        0  0.000856 -7.5525  112.46635     feature_0
+2  2025-08-26        0  0.000899 -7.5525  112.46635     feature_0
+3  2025-08-27        0  0.000344 -7.5525  112.46635     feature_0
+4  2025-08-29        0  0.000012 -7.5525  112.46635     feature_0
+5  2025-08-30        0  0.000188 -7.5525  112.46635     feature_0
+6  2025-08-31        0  0.000101 -7.5525  112.46635     feature_0
+7  2025-09-01        0  0.000227 -7.5525  112.46635     feature_0
+8  2025-09-02        0  0.000066 -7.5525  112.46635     feature_0
+9  2025-09-03        0  0.000080 -7.5525  112.46635     feature_0
+10 2025-09-04        0  0.000321 -7.5525  112.46635     feature_0
+11 2025-09-05        0  0.000292 -7.5525  112.46635     feature_0
+12 2025-09-06        0  0.000084 -7.5525  112.46635     feature_0
+13 2025-09-07        0 -0.000097 -7.5525  112.46635     feature_0
+14 2025-09-08        0  0.000373 -7.5525  112.46635     feature_0
+15 2025-09-09        0  0.000003 -7.5525  112.46635     feature_0
+16 2025-09-10        0  0.000208 -7.5525  112.46635     feature_0
+17 2025-09-11        0  0.000129 -7.5525  112.46635     feature_0
+18 2025-09-12        0  0.000259 -7.5525  112.46635     feature_0
+19 2025-09-13        0  0.000159 -7.5525  112.46635     feature_0
+
+
+</pre></div>
+</div>
+</section>
+<section id="ch4">
+<h4>CH4<a class="headerlink" href="#ch4" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Gambar Grafik</p></li>
+</ul>
+<p><img alt="image" src="https://hackmd.io/_uploads/BkbLWMMdfx.png" /></p>
+<ul class="simple">
+<li><p>Tampilan CSV (20 Data teratas)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Konversi berhasil! Berikut 20 data teratas:
+            t  feature          CH4     lat        lon feature_names
+0  2025-08-30        0  1890.787406 -7.5525  112.46635     feature_0
+1  2025-09-02        0  1887.104040 -7.5525  112.46635     feature_0
+2  2025-09-03        0  1873.186188 -7.5525  112.46635     feature_0
+3  2025-09-04        0  1856.093628 -7.5525  112.46635     feature_0
+4  2025-09-13        0  1887.547485 -7.5525  112.46635     feature_0
+5  2025-09-19        0  1905.868782 -7.5525  112.46635     feature_0
+6  2025-09-28        0  1843.422748 -7.5525  112.46635     feature_0
+7  2025-10-05        0  1892.076318 -7.5525  112.46635     feature_0
+8  2025-10-14        0  1895.504198 -7.5525  112.46635     feature_0
+9  2025-10-15        0  1892.995190 -7.5525  112.46635     feature_0
+10 2025-10-16        0  1890.634595 -7.5525  112.46635     feature_0
+11 2025-10-17        0  1855.296387 -7.5525  112.46635     feature_0
+12 2026-02-04        0  1889.200663 -7.5525  112.46635     feature_0
+13 2026-04-05        0  1908.433716 -7.5525  112.46635     feature_0
+14 2026-04-13        0  1889.421997 -7.5525  112.46635     feature_0
+15 2026-04-14        0  1884.481179 -7.5525  112.46635     feature_0
+16 2026-04-15        0  1899.279175 -7.5525  112.46635     feature_0
+17 2026-04-16        0  1876.674805 -7.5525  112.46635     feature_0
+18 2026-04-25        0  1834.913489 -7.5525  112.46635     feature_0
+19 2026-04-26        0  1903.294922 -7.5525  112.46635     feature_0
+</pre></div>
+</div>
+</section>
+</section>
+<section id="indetifikasi-outlier">
+<h3>2.2.3 Indetifikasi Outlier<a class="headerlink" href="#indetifikasi-outlier" title="Link to this heading">#</a></h3>
+</section>
+<section id="indetifikasi-missing-value">
+<h3>2.2.4 Indetifikasi Missing Value<a class="headerlink" href="#indetifikasi-missing-value" title="Link to this heading">#</a></h3>
+</section>
+<section id="identifikasi-noise-data">
+<h3>2.2.5 Identifikasi Noise Data<a class="headerlink" href="#identifikasi-noise-data" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Business Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengamati-kualitas-udara">1.1 Mengamati Kualitas Udara</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-indeks-kualitas-udara">1.1.1 Deskripsi Indeks Kualitas Udara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsur-unsur-penentu-kualitas-udara">1.1.2 Unsur-Unsur Penentu Kualitas Udara</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-nitrogen-dioksida-text-no-2">a. Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-karbon-monoksida-text-co">b. Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-sulfur-dioksida-text-so-2">c. Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-metana-text-ch-4">d. Metana (<span class="math notranslate nohighlight">\(\text{CH}_4\)</span>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2.  Data Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collecting-data">2.1 Collecting Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-karbon-monoksida-text-co">2.1.1 Data Karbon Monoksida (<span class="math notranslate nohighlight">\(\text{CO}\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-nitrogen-dioksida-text-no-2">2.1.2 Data Nitrogen Dioksida (<span class="math notranslate nohighlight">\(\text{NO}_2\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Load Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sulfur-dioksida-text-so-2">2.1.3 Data Sulfur Dioksida (<span class="math notranslate nohighlight">\(\text{SO}_2\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Load Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-metana-text-ch-4">2.1.4 Data Metana (<span class="math notranslate nohighlight">\(\text{CH}_4\)</span>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Load Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">2.2 Eksplorasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">2.2.1 Visualisasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-python-menampilkan-peta">Kode Python Menampilkan Peta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar-peta">Gambar Peta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-wilayah-area-of-interest-aoi-kabupaten-mojokerto">Deskripsi Wilayah: Area of Interest (AOI) Kabupaten Mojokerto</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data-grafik-selama-30-hari">2.2.2 Visualisasi Data Grafik(selama 30 hari)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#co">CO</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#no2">NO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#so2">SO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ch4">CH4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-outlier">2.2.3 Indetifikasi Outlier</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-missing-value">2.2.4 Indetifikasi Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-noise-data">2.2.5 Identifikasi Noise Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
