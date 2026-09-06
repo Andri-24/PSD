@@ -426,6 +426,96 @@ Konversi berhasil! Berikut 20 data teratas:
 19 2026-04-26        0  1903.294922 -7.5525  112.46635     feature_0
 ```
 
-### 2.2.3 Indetifikasi Outlier
-### 2.2.4 Indetifikasi Missing Value
-### 2.2.5 Identifikasi Noise Data
+### 2.2.3 Pengertian Statistik Properti pada KNIME
+
+- Column
+Merupakan nama atau label pengenal dari atribut (variabel) di dalam dataset. Fungsinya adalah sebagai penanda identitas data agar analis dapat membedakan variabel yang sedang dipelajari serta mempermudah referensi pada tahapan transformasi data berikutnya.
+
+- Min
+Nilai terendah atau batas bawah numerik yang tercatat pada kolom tersebut. Fungsinya untuk mengetahui rentang data paling dasar serta mendeteksi potensi anomali nilai minimum, seperti angka negatif pada fitur yang seharusnya bernilai non-negatif.
+
+- Max
+Nilai tertinggi atau batas atas numerik yang tercatat pada kolom tersebut. Fungsinya untuk melihat jangkauan nilai maksimum data serta membantu mendeteksi keberadaan pencilan (outlier) ekstrem atas.
+
+- Mean
+Nilai rata-rata hitung aritmatika dari seluruh data yang valid. Fungsinya adalah memberikan gambaran nilai tipikal atau titik pusat data secara umum jika sebaran data diasumsikan simetris.
+
+- Standard Deviation
+Ukuran dispersi yang menunjukkan seberapa jauh variasi setiap titik data menyimpang dari nilai rata-ratanya (mean). Fungsinya untuk menilai tingkat volatilitas data dan menentukan apakah data mengumpul rapat di sekitar rata-rata atau menyebar luas.
+
+- Variance
+Kuadrat dari nilai Standard Deviation yang menggambarkan rata-rata kuadrat deviasi data dari nilai mean. Fungsinya untuk mengukur total variabilitas data secara matematis; metrik ini menjadi dasar perhitungan dalam berbagai metode analisis lanjutan seperti ANOVA atau Principal Component Analysis (PCA).
+
+- Skewness
+Ukuran asimetri atau derajat kemencengan kurva distribusi data terhadap titik pusatnya. Fungsinya untuk mendeteksi arah kemiringan data; nilai mendekati 0 berarti simetris, nilai positif menunjukkan kemiringan ke kanan (ekor panjang di sisi kanan), dan nilai negatif menunjukkan kemiringan ke kiri.
+
+- Kurtosis
+Ukuran keruncingan kurva distribusi serta ketebalan ekor data (heavy-tailedness) dibandingkan dengan distribusi normal standar. Fungsinya untuk mendeteksi apakah data memiliki risiko ekstrem yang tinggi (leptokurtik / ekor tebal) atau sebaliknya memiliki sebaran yang lebih datar dan minim nilai ekstrem (platikurtik).
+
+- Overall Sum
+Total penjumlahan kumulatif dari semua nilai numerik yang ada di kolom tersebut. Fungsinya untuk melihat volume agregat beban keseluruhan dalam periode pengamatan, seperti total beban emisi gas atau akumulasi total volume.
+
+- No. Missings
+Jumlah baris yang sama sekali tidak memiliki nilai (null atau blank cell). Fungsinya untuk mengukur integritas dan kelengkapan baris data sehingga analis dapat menentukan langkah pembersihan seperti penghapusan baris (drop) atau imputasi nilai.
+
+- No. NaNs
+Jumlah nilai yang tercatat sebagai Not a Number (NaN), biasanya terjadi akibat kegagalan komputasi matematika seperti pembagian dengan angka nol atau kesalahan type casting. Fungsinya untuk mendeteksi adanya korupsi data teknis pada level kalkulasi numerik.
+
+- No. +∞s
+Jumlah kemunculan nilai tak hingga positif (positive infinity). Fungsinya untuk menemukan kegagalan pembagian dengan angka nol yang mendekati nol positif atau overflow komputasi yang dapat merusak perhitungan algoritma machine learning jika dibiarkan.
+
+- No. -∞s
+Jumlah kemunculan nilai tak hingga negatif (negative infinity). Fungsinya untuk mendeteksi kesalahan numerik ekstrem batas bawah (underflow matematis atau fungsi logaritma bernilai nol) yang perlu dinormalisasi atau dibersihkan.
+
+- Median
+Nilai tengah dari dataset setelah seluruh nilai diurutkan dari yang terkecil hingga terbesar. Fungsinya adalah sebagai ukuran pemusatan (central tendency) yang sangat tangguh (robust) terhadap pengaruh pencilan (outlier) ekstrem jika dibandingkan dengan nilai mean.
+
+- Row Count
+Total keseluruhan jumlah baris data yang ada pada dataset untuk kolom tersebut. Fungsinya untuk mengetahui ukuran sampel data yang sedang diproses dan menjadi angka pembagi dasar dalam menghitung rasio missing values atau persentase validitas.
+
+- Histogram
+Representasi grafis dalam bentuk baris atau balok frekuensi yang membagi rentang data ke dalam beberapa interval (bins). Fungsinya untuk melihat bentuk riil dari distribusi data secara visual, mendeteksi modalitas (apakah data memiliki satu puncak, dua puncak, atau seragam), serta mengonfirmasi pola sebaran secara cepat.
+
+
+### 2.2.4 Hasil Statistik
+#### 2.2.4.1 CO
+
+| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness    | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
+|---------|---------|-------------|-------------|-------------|----------------|-------------|-------------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
+| feature | feature | 0           | 0           | 0           | 0              | 0           | 0           | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 311       |
+| co      | co      | 0.016392469 | 0.043462717 | 0.028582905 | 0.00352191     | 1.24038E-05 | 0.282370379 | 1.244630237 | 8.889283606 | 0            | 0        | 0         | 0         | 0.028294643 | 311       |
+| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0           | 0           | -2348.8275  | 0            | 0        | 0         | 0         | -7.5525     | 311       |
+| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0           | 0           | 34977.03488 | 0            | 0        | 0         | 0         | 112.4663501 | 311       |
+
+
+#### 2.2.4.2 NO2
+
+| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
+|---------|---------|-------------|-------------|-------------|----------------|-------------|----------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
+| feature | feature | 0           | 0           | 0           | 0              | 0           | 0        | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 259       |
+| no2     | no2     | 4.32534E-06 | 9.69946E-05 | 4.00385E-05 | 1.46836E-05    | 2.15608E-10 | 0.571741 | 0.624996046 | 0.010369981 | 0            | 0        | 0         | 0         | 3.96572E-05 | 259       |
+| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0        | 0           | -1956.0975  | 0            | 0        | 0         | 0         | -7.5525     | 259       |
+| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0        | 0           | 29128.78468 | 0            | 0        | 0         | 0         | 112.4663501 | 259       |
+
+
+#### 2.2.4.3 SO2
+
+| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness    | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
+|---------|---------|-------------|-------------|-------------|----------------|-------------|-------------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
+| feature | feature | 0           | 0           | 0           | 0              | 0           | 0           | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 291       |
+| so2     | so2     | -0.0003511  | 0.001175025 | 0.000139075 | 0.000199723    | 3.98891E-08 | 1.776471117 | 4.941146291 | 0.040470966 | 0            | 0        | 0         | 0         | 9.17392E-05 | 291       |
+| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0           | 0           | -2197.7775  | 0            | 0        | 0         | 0         | -7.5525     | 291       |
+| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0           | 0           | 32727.70788 | 0            | 0        | 0         | 0         | 112.4663501 | 291       |
+
+
+#### 2.2.4.4 CH4
+
+| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness     | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
+|---------|---------|-------------|-------------|-------------|----------------|-------------|--------------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
+| feature | feature | 0           | 0           | 0           | 0              | 0           | 0            | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 62        |
+| ch4     | ch4     | 1834.913489 | 1935.768311 | 1893.221991 | 18.18395154    | 330.6560935 | -0.966599216 | 1.681297023 | 117379.7635 | 0            | 0        | 0         | 0         | 1894.209357 | 62        |
+| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0            | 0           | -468.255    | 0            | 0        | 0         | 0         | -7.5525     | 62        |
+| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0            | 0           | 6972.913707 | 0            | 0        | 0         | 0         | 112.4663501 | 62        |
+
+
+### 2.2.5 

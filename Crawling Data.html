@@ -460,9 +460,15 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ch4">CH4</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-outlier">2.2.3 Indetifikasi Outlier</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-missing-value">2.2.4 Indetifikasi Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-noise-data">2.2.5 Identifikasi Noise Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-statistik-properti-pada-knime">2.2.3 Pengertian Statistik Properti pada KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-statistik">2.2.4 Hasil Statistik</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.2.4.1 CO</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.2.4.2 NO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.2.4.3 SO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.2.4.4 CH4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.2.5</a></li>
 </ul>
 </li>
 </ul>
@@ -929,14 +935,428 @@ Wilayah kajian mencakup topografi yang bervariasi, mulai dari dataran rendah ind
 </div>
 </section>
 </section>
-<section id="indetifikasi-outlier">
-<h3>2.2.3 Indetifikasi Outlier<a class="headerlink" href="#indetifikasi-outlier" title="Link to this heading">#</a></h3>
+<section id="pengertian-statistik-properti-pada-knime">
+<h3>2.2.3 Pengertian Statistik Properti pada KNIME<a class="headerlink" href="#pengertian-statistik-properti-pada-knime" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Column
+Merupakan nama atau label pengenal dari atribut (variabel) di dalam dataset. Fungsinya adalah sebagai penanda identitas data agar analis dapat membedakan variabel yang sedang dipelajari serta mempermudah referensi pada tahapan transformasi data berikutnya.</p></li>
+<li><p>Min
+Nilai terendah atau batas bawah numerik yang tercatat pada kolom tersebut. Fungsinya untuk mengetahui rentang data paling dasar serta mendeteksi potensi anomali nilai minimum, seperti angka negatif pada fitur yang seharusnya bernilai non-negatif.</p></li>
+<li><p>Max
+Nilai tertinggi atau batas atas numerik yang tercatat pada kolom tersebut. Fungsinya untuk melihat jangkauan nilai maksimum data serta membantu mendeteksi keberadaan pencilan (outlier) ekstrem atas.</p></li>
+<li><p>Mean
+Nilai rata-rata hitung aritmatika dari seluruh data yang valid. Fungsinya adalah memberikan gambaran nilai tipikal atau titik pusat data secara umum jika sebaran data diasumsikan simetris.</p></li>
+<li><p>Standard Deviation
+Ukuran dispersi yang menunjukkan seberapa jauh variasi setiap titik data menyimpang dari nilai rata-ratanya (mean). Fungsinya untuk menilai tingkat volatilitas data dan menentukan apakah data mengumpul rapat di sekitar rata-rata atau menyebar luas.</p></li>
+<li><p>Variance
+Kuadrat dari nilai Standard Deviation yang menggambarkan rata-rata kuadrat deviasi data dari nilai mean. Fungsinya untuk mengukur total variabilitas data secara matematis; metrik ini menjadi dasar perhitungan dalam berbagai metode analisis lanjutan seperti ANOVA atau Principal Component Analysis (PCA).</p></li>
+<li><p>Skewness
+Ukuran asimetri atau derajat kemencengan kurva distribusi data terhadap titik pusatnya. Fungsinya untuk mendeteksi arah kemiringan data; nilai mendekati 0 berarti simetris, nilai positif menunjukkan kemiringan ke kanan (ekor panjang di sisi kanan), dan nilai negatif menunjukkan kemiringan ke kiri.</p></li>
+<li><p>Kurtosis
+Ukuran keruncingan kurva distribusi serta ketebalan ekor data (heavy-tailedness) dibandingkan dengan distribusi normal standar. Fungsinya untuk mendeteksi apakah data memiliki risiko ekstrem yang tinggi (leptokurtik / ekor tebal) atau sebaliknya memiliki sebaran yang lebih datar dan minim nilai ekstrem (platikurtik).</p></li>
+<li><p>Overall Sum
+Total penjumlahan kumulatif dari semua nilai numerik yang ada di kolom tersebut. Fungsinya untuk melihat volume agregat beban keseluruhan dalam periode pengamatan, seperti total beban emisi gas atau akumulasi total volume.</p></li>
+<li><p>No. Missings
+Jumlah baris yang sama sekali tidak memiliki nilai (null atau blank cell). Fungsinya untuk mengukur integritas dan kelengkapan baris data sehingga analis dapat menentukan langkah pembersihan seperti penghapusan baris (drop) atau imputasi nilai.</p></li>
+<li><p>No. NaNs
+Jumlah nilai yang tercatat sebagai Not a Number (NaN), biasanya terjadi akibat kegagalan komputasi matematika seperti pembagian dengan angka nol atau kesalahan type casting. Fungsinya untuk mendeteksi adanya korupsi data teknis pada level kalkulasi numerik.</p></li>
+<li><p>No. +∞s
+Jumlah kemunculan nilai tak hingga positif (positive infinity). Fungsinya untuk menemukan kegagalan pembagian dengan angka nol yang mendekati nol positif atau overflow komputasi yang dapat merusak perhitungan algoritma machine learning jika dibiarkan.</p></li>
+<li><p>No. -∞s
+Jumlah kemunculan nilai tak hingga negatif (negative infinity). Fungsinya untuk mendeteksi kesalahan numerik ekstrem batas bawah (underflow matematis atau fungsi logaritma bernilai nol) yang perlu dinormalisasi atau dibersihkan.</p></li>
+<li><p>Median
+Nilai tengah dari dataset setelah seluruh nilai diurutkan dari yang terkecil hingga terbesar. Fungsinya adalah sebagai ukuran pemusatan (central tendency) yang sangat tangguh (robust) terhadap pengaruh pencilan (outlier) ekstrem jika dibandingkan dengan nilai mean.</p></li>
+<li><p>Row Count
+Total keseluruhan jumlah baris data yang ada pada dataset untuk kolom tersebut. Fungsinya untuk mengetahui ukuran sampel data yang sedang diproses dan menjadi angka pembagi dasar dalam menghitung rasio missing values atau persentase validitas.</p></li>
+<li><p>Histogram
+Representasi grafis dalam bentuk baris atau balok frekuensi yang membagi rentang data ke dalam beberapa interval (bins). Fungsinya untuk melihat bentuk riil dari distribusi data secara visual, mendeteksi modalitas (apakah data memiliki satu puncak, dua puncak, atau seragam), serta mengonfirmasi pola sebaran secara cepat.</p></li>
+</ul>
 </section>
-<section id="indetifikasi-missing-value">
-<h3>2.2.4 Indetifikasi Missing Value<a class="headerlink" href="#indetifikasi-missing-value" title="Link to this heading">#</a></h3>
+<section id="hasil-statistik">
+<h3>2.2.4 Hasil Statistik<a class="headerlink" href="#hasil-statistik" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h4>2.2.4.1 CO<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>row ID</p></th>
+<th class="head"><p>Column</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Mean</p></th>
+<th class="head"><p>Std. deviation</p></th>
+<th class="head"><p>Variance</p></th>
+<th class="head"><p>Skewness</p></th>
+<th class="head"><p>Kurtosis</p></th>
+<th class="head"><p>Overall sum</p></th>
+<th class="head"><p>No. missings</p></th>
+<th class="head"><p>No. NaNs</p></th>
+<th class="head"><p>No. +<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>No. -<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>Median</p></th>
+<th class="head"><p>Row count</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>feature</p></td>
+<td><p>feature</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>311</p></td>
+</tr>
+<tr class="row-odd"><td><p>co</p></td>
+<td><p>co</p></td>
+<td><p>0.016392469</p></td>
+<td><p>0.043462717</p></td>
+<td><p>0.028582905</p></td>
+<td><p>0.00352191</p></td>
+<td><p>1.24038E-05</p></td>
+<td><p>0.282370379</p></td>
+<td><p>1.244630237</p></td>
+<td><p>8.889283606</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.028294643</p></td>
+<td><p>311</p></td>
+</tr>
+<tr class="row-even"><td><p>lat</p></td>
+<td><p>lat</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-2348.8275</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-7.5525</p></td>
+<td><p>311</p></td>
+</tr>
+<tr class="row-odd"><td><p>lon</p></td>
+<td><p>lon</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>34977.03488</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>112.4663501</p></td>
+<td><p>311</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
-<section id="identifikasi-noise-data">
-<h3>2.2.5 Identifikasi Noise Data<a class="headerlink" href="#identifikasi-noise-data" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h4>2.2.4.2 NO2<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>row ID</p></th>
+<th class="head"><p>Column</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Mean</p></th>
+<th class="head"><p>Std. deviation</p></th>
+<th class="head"><p>Variance</p></th>
+<th class="head"><p>Skewness</p></th>
+<th class="head"><p>Kurtosis</p></th>
+<th class="head"><p>Overall sum</p></th>
+<th class="head"><p>No. missings</p></th>
+<th class="head"><p>No. NaNs</p></th>
+<th class="head"><p>No. +<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>No. -<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>Median</p></th>
+<th class="head"><p>Row count</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>feature</p></td>
+<td><p>feature</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>259</p></td>
+</tr>
+<tr class="row-odd"><td><p>no2</p></td>
+<td><p>no2</p></td>
+<td><p>4.32534E-06</p></td>
+<td><p>9.69946E-05</p></td>
+<td><p>4.00385E-05</p></td>
+<td><p>1.46836E-05</p></td>
+<td><p>2.15608E-10</p></td>
+<td><p>0.571741</p></td>
+<td><p>0.624996046</p></td>
+<td><p>0.010369981</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>3.96572E-05</p></td>
+<td><p>259</p></td>
+</tr>
+<tr class="row-even"><td><p>lat</p></td>
+<td><p>lat</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-1956.0975</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-7.5525</p></td>
+<td><p>259</p></td>
+</tr>
+<tr class="row-odd"><td><p>lon</p></td>
+<td><p>lon</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>29128.78468</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>112.4663501</p></td>
+<td><p>259</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id6">
+<h4>2.2.4.3 SO2<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>row ID</p></th>
+<th class="head"><p>Column</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Mean</p></th>
+<th class="head"><p>Std. deviation</p></th>
+<th class="head"><p>Variance</p></th>
+<th class="head"><p>Skewness</p></th>
+<th class="head"><p>Kurtosis</p></th>
+<th class="head"><p>Overall sum</p></th>
+<th class="head"><p>No. missings</p></th>
+<th class="head"><p>No. NaNs</p></th>
+<th class="head"><p>No. +<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>No. -<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>Median</p></th>
+<th class="head"><p>Row count</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>feature</p></td>
+<td><p>feature</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>291</p></td>
+</tr>
+<tr class="row-odd"><td><p>so2</p></td>
+<td><p>so2</p></td>
+<td><p>-0.0003511</p></td>
+<td><p>0.001175025</p></td>
+<td><p>0.000139075</p></td>
+<td><p>0.000199723</p></td>
+<td><p>3.98891E-08</p></td>
+<td><p>1.776471117</p></td>
+<td><p>4.941146291</p></td>
+<td><p>0.040470966</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>9.17392E-05</p></td>
+<td><p>291</p></td>
+</tr>
+<tr class="row-even"><td><p>lat</p></td>
+<td><p>lat</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-2197.7775</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-7.5525</p></td>
+<td><p>291</p></td>
+</tr>
+<tr class="row-odd"><td><p>lon</p></td>
+<td><p>lon</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>32727.70788</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>112.4663501</p></td>
+<td><p>291</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id7">
+<h4>2.2.4.4 CH4<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>row ID</p></th>
+<th class="head"><p>Column</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Mean</p></th>
+<th class="head"><p>Std. deviation</p></th>
+<th class="head"><p>Variance</p></th>
+<th class="head"><p>Skewness</p></th>
+<th class="head"><p>Kurtosis</p></th>
+<th class="head"><p>Overall sum</p></th>
+<th class="head"><p>No. missings</p></th>
+<th class="head"><p>No. NaNs</p></th>
+<th class="head"><p>No. +<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>No. -<span class="math notranslate nohighlight">\(\infty\)</span>s</p></th>
+<th class="head"><p>Median</p></th>
+<th class="head"><p>Row count</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>feature</p></td>
+<td><p>feature</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>62</p></td>
+</tr>
+<tr class="row-odd"><td><p>ch4</p></td>
+<td><p>ch4</p></td>
+<td><p>1834.913489</p></td>
+<td><p>1935.768311</p></td>
+<td><p>1893.221991</p></td>
+<td><p>18.18395154</p></td>
+<td><p>330.6560935</p></td>
+<td><p>-0.966599216</p></td>
+<td><p>1.681297023</p></td>
+<td><p>117379.7635</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1894.209357</p></td>
+<td><p>62</p></td>
+</tr>
+<tr class="row-even"><td><p>lat</p></td>
+<td><p>lat</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>-7.5525</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-468.255</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-7.5525</p></td>
+<td><p>62</p></td>
+</tr>
+<tr class="row-odd"><td><p>lon</p></td>
+<td><p>lon</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>112.4663501</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>6972.913707</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>112.4663501</p></td>
+<td><p>62</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="id8">
+<h3>2.2.5<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 </section>
 </section>
 </section>
@@ -1044,9 +1464,15 @@ Wilayah kajian mencakup topografi yang bervariasi, mulai dari dataran rendah ind
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ch4">CH4</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-outlier">2.2.3 Indetifikasi Outlier</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indetifikasi-missing-value">2.2.4 Indetifikasi Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-noise-data">2.2.5 Identifikasi Noise Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-statistik-properti-pada-knime">2.2.3 Pengertian Statistik Properti pada KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-statistik">2.2.4 Hasil Statistik</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.2.4.1 CO</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.2.4.2 NO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.2.4.3 SO2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.2.4.4 CH4</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.2.5</a></li>
 </ul>
 </li>
 </ul>
