@@ -937,40 +937,70 @@ Wilayah kajian mencakup topografi yang bervariasi, mulai dari dataran rendah ind
 </section>
 <section id="pengertian-statistik-properti-pada-knime">
 <h3>2.2.3 Pengertian Statistik Properti pada KNIME<a class="headerlink" href="#pengertian-statistik-properti-pada-knime" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Column
-Merupakan nama atau label pengenal dari atribut (variabel) di dalam dataset. Fungsinya adalah sebagai penanda identitas data agar analis dapat membedakan variabel yang sedang dipelajari serta mempermudah referensi pada tahapan transformasi data berikutnya.</p></li>
-<li><p>Min
-Nilai terendah atau batas bawah numerik yang tercatat pada kolom tersebut. Fungsinya untuk mengetahui rentang data paling dasar serta mendeteksi potensi anomali nilai minimum, seperti angka negatif pada fitur yang seharusnya bernilai non-negatif.</p></li>
-<li><p>Max
-Nilai tertinggi atau batas atas numerik yang tercatat pada kolom tersebut. Fungsinya untuk melihat jangkauan nilai maksimum data serta membantu mendeteksi keberadaan pencilan (outlier) ekstrem atas.</p></li>
-<li><p>Mean
-Nilai rata-rata hitung aritmatika dari seluruh data yang valid. Fungsinya adalah memberikan gambaran nilai tipikal atau titik pusat data secara umum jika sebaran data diasumsikan simetris.</p></li>
-<li><p>Standard Deviation
-Ukuran dispersi yang menunjukkan seberapa jauh variasi setiap titik data menyimpang dari nilai rata-ratanya (mean). Fungsinya untuk menilai tingkat volatilitas data dan menentukan apakah data mengumpul rapat di sekitar rata-rata atau menyebar luas.</p></li>
-<li><p>Variance
-Kuadrat dari nilai Standard Deviation yang menggambarkan rata-rata kuadrat deviasi data dari nilai mean. Fungsinya untuk mengukur total variabilitas data secara matematis; metrik ini menjadi dasar perhitungan dalam berbagai metode analisis lanjutan seperti ANOVA atau Principal Component Analysis (PCA).</p></li>
-<li><p>Skewness
-Ukuran asimetri atau derajat kemencengan kurva distribusi data terhadap titik pusatnya. Fungsinya untuk mendeteksi arah kemiringan data; nilai mendekati 0 berarti simetris, nilai positif menunjukkan kemiringan ke kanan (ekor panjang di sisi kanan), dan nilai negatif menunjukkan kemiringan ke kiri.</p></li>
-<li><p>Kurtosis
-Ukuran keruncingan kurva distribusi serta ketebalan ekor data (heavy-tailedness) dibandingkan dengan distribusi normal standar. Fungsinya untuk mendeteksi apakah data memiliki risiko ekstrem yang tinggi (leptokurtik / ekor tebal) atau sebaliknya memiliki sebaran yang lebih datar dan minim nilai ekstrem (platikurtik).</p></li>
-<li><p>Overall Sum
-Total penjumlahan kumulatif dari semua nilai numerik yang ada di kolom tersebut. Fungsinya untuk melihat volume agregat beban keseluruhan dalam periode pengamatan, seperti total beban emisi gas atau akumulasi total volume.</p></li>
-<li><p>No. Missings
-Jumlah baris yang sama sekali tidak memiliki nilai (null atau blank cell). Fungsinya untuk mengukur integritas dan kelengkapan baris data sehingga analis dapat menentukan langkah pembersihan seperti penghapusan baris (drop) atau imputasi nilai.</p></li>
-<li><p>No. NaNs
-Jumlah nilai yang tercatat sebagai Not a Number (NaN), biasanya terjadi akibat kegagalan komputasi matematika seperti pembagian dengan angka nol atau kesalahan type casting. Fungsinya untuk mendeteksi adanya korupsi data teknis pada level kalkulasi numerik.</p></li>
-<li><p>No. +∞s
-Jumlah kemunculan nilai tak hingga positif (positive infinity). Fungsinya untuk menemukan kegagalan pembagian dengan angka nol yang mendekati nol positif atau overflow komputasi yang dapat merusak perhitungan algoritma machine learning jika dibiarkan.</p></li>
-<li><p>No. -∞s
-Jumlah kemunculan nilai tak hingga negatif (negative infinity). Fungsinya untuk mendeteksi kesalahan numerik ekstrem batas bawah (underflow matematis atau fungsi logaritma bernilai nol) yang perlu dinormalisasi atau dibersihkan.</p></li>
-<li><p>Median
-Nilai tengah dari dataset setelah seluruh nilai diurutkan dari yang terkecil hingga terbesar. Fungsinya adalah sebagai ukuran pemusatan (central tendency) yang sangat tangguh (robust) terhadap pengaruh pencilan (outlier) ekstrem jika dibandingkan dengan nilai mean.</p></li>
-<li><p>Row Count
-Total keseluruhan jumlah baris data yang ada pada dataset untuk kolom tersebut. Fungsinya untuk mengetahui ukuran sampel data yang sedang diproses dan menjadi angka pembagi dasar dalam menghitung rasio missing values atau persentase validitas.</p></li>
-<li><p>Histogram
-Representasi grafis dalam bentuk baris atau balok frekuensi yang membagi rentang data ke dalam beberapa interval (bins). Fungsinya untuk melihat bentuk riil dari distribusi data secara visual, mendeteksi modalitas (apakah data memiliki satu puncak, dua puncak, atau seragam), serta mengonfirmasi pola sebaran secara cepat.</p></li>
-</ul>
+<ol class="arabic simple">
+<li><p>Column</p></li>
+</ol>
+<p>Merupakan nama atau label pengenal dari atribut (variabel) di dalam dataset. Fungsinya adalah sebagai penanda identitas data agar analis dapat membedakan variabel yang sedang dipelajari serta mempermudah referensi pada tahapan transformasi data berikutnya.</p>
+<ol class="arabic simple" start="2">
+<li><p>Min</p></li>
+</ol>
+<p>Nilai terendah atau batas bawah numerik yang tercatat pada kolom tersebut. Fungsinya untuk mengetahui rentang data paling dasar serta mendeteksi potensi anomali nilai minimum, seperti angka negatif pada fitur yang seharusnya bernilai non-negatif.</p>
+<ol class="arabic simple" start="3">
+<li><p>Max</p></li>
+</ol>
+<p>Nilai tertinggi atau batas atas numerik yang tercatat pada kolom tersebut. Fungsinya untuk melihat jangkauan nilai maksimum data serta membantu mendeteksi keberadaan pencilan (outlier) ekstrem atas.</p>
+<ol class="arabic simple" start="4">
+<li><p>Mean</p></li>
+</ol>
+<p>Nilai rata-rata hitung aritmatika dari seluruh data yang valid. Fungsinya adalah memberikan gambaran nilai tipikal atau titik pusat data secara umum jika sebaran data diasumsikan simetris.</p>
+<ol class="arabic simple" start="5">
+<li><p>Standard Deviation</p></li>
+</ol>
+<p>Ukuran dispersi yang menunjukkan seberapa jauh variasi setiap titik data menyimpang dari nilai rata-ratanya (mean). Fungsinya untuk menilai tingkat volatilitas data dan menentukan apakah data mengumpul rapat di sekitar rata-rata atau menyebar luas.</p>
+<ol class="arabic simple" start="6">
+<li><p>Variance</p></li>
+</ol>
+<p>Kuadrat dari nilai Standard Deviation yang menggambarkan rata-rata kuadrat deviasi data dari nilai mean. Fungsinya untuk mengukur total variabilitas data secara matematis; metrik ini menjadi dasar perhitungan dalam berbagai metode analisis lanjutan seperti ANOVA atau Principal Component Analysis (PCA).</p>
+<ol class="arabic simple" start="7">
+<li><p>Skewness</p></li>
+</ol>
+<p>Ukuran asimetri atau derajat kemencengan kurva distribusi data terhadap titik pusatnya. Fungsinya untuk mendeteksi arah kemiringan data; nilai mendekati 0 berarti simetris, nilai positif menunjukkan kemiringan ke kanan (ekor panjang di sisi kanan), dan nilai negatif menunjukkan kemiringan ke kiri.</p>
+<ol class="arabic simple" start="8">
+<li><p>Kurtosis</p></li>
+</ol>
+<p>Ukuran keruncingan kurva distribusi serta ketebalan ekor data (heavy-tailedness) dibandingkan dengan distribusi normal standar. Fungsinya untuk mendeteksi apakah data memiliki risiko ekstrem yang tinggi (leptokurtik / ekor tebal) atau sebaliknya memiliki sebaran yang lebih datar dan minim nilai ekstrem (platikurtik).</p>
+<ol class="arabic simple" start="9">
+<li><p>Overall Sum</p></li>
+</ol>
+<p>Total penjumlahan kumulatif dari semua nilai numerik yang ada di kolom tersebut. Fungsinya untuk melihat volume agregat beban keseluruhan dalam periode pengamatan, seperti total beban emisi gas atau akumulasi total volume.</p>
+<ol class="arabic simple" start="10">
+<li><p>No. Missings</p></li>
+</ol>
+<p>Jumlah baris yang sama sekali tidak memiliki nilai (null atau blank cell). Fungsinya untuk mengukur integritas dan kelengkapan baris data sehingga analis dapat menentukan langkah pembersihan seperti penghapusan baris (drop) atau imputasi nilai.</p>
+<ol class="arabic simple" start="11">
+<li><p>No. NaNs</p></li>
+</ol>
+<p>Jumlah nilai yang tercatat sebagai Not a Number (NaN), biasanya terjadi akibat kegagalan komputasi matematika seperti pembagian dengan angka nol atau kesalahan type casting. Fungsinya untuk mendeteksi adanya korupsi data teknis pada level kalkulasi numerik.</p>
+<ol class="arabic simple" start="12">
+<li><p>No. +∞s</p></li>
+</ol>
+<p>Jumlah kemunculan nilai tak hingga positif (positive infinity). Fungsinya untuk menemukan kegagalan pembagian dengan angka nol yang mendekati nol positif atau overflow komputasi yang dapat merusak perhitungan algoritma machine learning jika dibiarkan.</p>
+<ol class="arabic simple" start="13">
+<li><p>No. -∞s</p></li>
+</ol>
+<p>Jumlah kemunculan nilai tak hingga negatif (negative infinity). Fungsinya untuk mendeteksi kesalahan numerik ekstrem batas bawah (underflow matematis atau fungsi logaritma bernilai nol) yang perlu dinormalisasi atau dibersihkan.</p>
+<ol class="arabic simple" start="14">
+<li><p>Median</p></li>
+</ol>
+<p>Nilai tengah dari dataset setelah seluruh nilai diurutkan dari yang terkecil hingga terbesar. Fungsinya adalah sebagai ukuran pemusatan (central tendency) yang sangat tangguh (robust) terhadap pengaruh pencilan (outlier) ekstrem jika dibandingkan dengan nilai mean.</p>
+<ol class="arabic simple" start="15">
+<li><p>Row Count</p></li>
+</ol>
+<p>Total keseluruhan jumlah baris data yang ada pada dataset untuk kolom tersebut. Fungsinya untuk mengetahui ukuran sampel data yang sedang diproses dan menjadi angka pembagi dasar dalam menghitung rasio missing values atau persentase validitas.</p>
+<ol class="arabic simple" start="16">
+<li><p>Histogram</p></li>
+</ol>
+<p>Representasi grafis dalam bentuk baris atau balok frekuensi yang membagi rentang data ke dalam beberapa interval (bins). Fungsinya untuk melihat bentuk riil dari distribusi data secara visual, mendeteksi modalitas (apakah data memiliki satu puncak, dua puncak, atau seragam), serta mengonfirmasi pola sebaran secara cepat.</p>
 </section>
 <section id="hasil-statistik">
 <h3>2.2.4 Hasil Statistik<a class="headerlink" href="#hasil-statistik" title="Link to this heading">#</a></h3>

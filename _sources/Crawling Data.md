@@ -428,52 +428,68 @@ Konversi berhasil! Berikut 20 data teratas:
 
 ### 2.2.3 Pengertian Statistik Properti pada KNIME
 
-- Column
+1.  Column
+
 Merupakan nama atau label pengenal dari atribut (variabel) di dalam dataset. Fungsinya adalah sebagai penanda identitas data agar analis dapat membedakan variabel yang sedang dipelajari serta mempermudah referensi pada tahapan transformasi data berikutnya.
 
-- Min
+2.  Min
+
 Nilai terendah atau batas bawah numerik yang tercatat pada kolom tersebut. Fungsinya untuk mengetahui rentang data paling dasar serta mendeteksi potensi anomali nilai minimum, seperti angka negatif pada fitur yang seharusnya bernilai non-negatif.
 
-- Max
+3.  Max
+
 Nilai tertinggi atau batas atas numerik yang tercatat pada kolom tersebut. Fungsinya untuk melihat jangkauan nilai maksimum data serta membantu mendeteksi keberadaan pencilan (outlier) ekstrem atas.
 
-- Mean
+4.  Mean
+
 Nilai rata-rata hitung aritmatika dari seluruh data yang valid. Fungsinya adalah memberikan gambaran nilai tipikal atau titik pusat data secara umum jika sebaran data diasumsikan simetris.
 
-- Standard Deviation
+5.  Standard Deviation
+
 Ukuran dispersi yang menunjukkan seberapa jauh variasi setiap titik data menyimpang dari nilai rata-ratanya (mean). Fungsinya untuk menilai tingkat volatilitas data dan menentukan apakah data mengumpul rapat di sekitar rata-rata atau menyebar luas.
 
-- Variance
+6.  Variance
+
 Kuadrat dari nilai Standard Deviation yang menggambarkan rata-rata kuadrat deviasi data dari nilai mean. Fungsinya untuk mengukur total variabilitas data secara matematis; metrik ini menjadi dasar perhitungan dalam berbagai metode analisis lanjutan seperti ANOVA atau Principal Component Analysis (PCA).
 
-- Skewness
+7.  Skewness
+
 Ukuran asimetri atau derajat kemencengan kurva distribusi data terhadap titik pusatnya. Fungsinya untuk mendeteksi arah kemiringan data; nilai mendekati 0 berarti simetris, nilai positif menunjukkan kemiringan ke kanan (ekor panjang di sisi kanan), dan nilai negatif menunjukkan kemiringan ke kiri.
 
-- Kurtosis
+8.  Kurtosis
+
 Ukuran keruncingan kurva distribusi serta ketebalan ekor data (heavy-tailedness) dibandingkan dengan distribusi normal standar. Fungsinya untuk mendeteksi apakah data memiliki risiko ekstrem yang tinggi (leptokurtik / ekor tebal) atau sebaliknya memiliki sebaran yang lebih datar dan minim nilai ekstrem (platikurtik).
 
-- Overall Sum
+9.  Overall Sum
+
 Total penjumlahan kumulatif dari semua nilai numerik yang ada di kolom tersebut. Fungsinya untuk melihat volume agregat beban keseluruhan dalam periode pengamatan, seperti total beban emisi gas atau akumulasi total volume.
 
-- No. Missings
+10.  No. Missings
+
 Jumlah baris yang sama sekali tidak memiliki nilai (null atau blank cell). Fungsinya untuk mengukur integritas dan kelengkapan baris data sehingga analis dapat menentukan langkah pembersihan seperti penghapusan baris (drop) atau imputasi nilai.
 
-- No. NaNs
+11.  No. NaNs
+
 Jumlah nilai yang tercatat sebagai Not a Number (NaN), biasanya terjadi akibat kegagalan komputasi matematika seperti pembagian dengan angka nol atau kesalahan type casting. Fungsinya untuk mendeteksi adanya korupsi data teknis pada level kalkulasi numerik.
 
-- No. +∞s
+12.  No. +∞s
+
 Jumlah kemunculan nilai tak hingga positif (positive infinity). Fungsinya untuk menemukan kegagalan pembagian dengan angka nol yang mendekati nol positif atau overflow komputasi yang dapat merusak perhitungan algoritma machine learning jika dibiarkan.
 
-- No. -∞s
+13.  No. -∞s
+
 Jumlah kemunculan nilai tak hingga negatif (negative infinity). Fungsinya untuk mendeteksi kesalahan numerik ekstrem batas bawah (underflow matematis atau fungsi logaritma bernilai nol) yang perlu dinormalisasi atau dibersihkan.
 
-- Median
+14.  Median
+
 Nilai tengah dari dataset setelah seluruh nilai diurutkan dari yang terkecil hingga terbesar. Fungsinya adalah sebagai ukuran pemusatan (central tendency) yang sangat tangguh (robust) terhadap pengaruh pencilan (outlier) ekstrem jika dibandingkan dengan nilai mean.
 
-- Row Count
+15.  Row Count
+
 Total keseluruhan jumlah baris data yang ada pada dataset untuk kolom tersebut. Fungsinya untuk mengetahui ukuran sampel data yang sedang diproses dan menjadi angka pembagi dasar dalam menghitung rasio missing values atau persentase validitas.
 
-- Histogram
+16.  Histogram
+
 Representasi grafis dalam bentuk baris atau balok frekuensi yang membagi rentang data ke dalam beberapa interval (bins). Fungsinya untuk melihat bentuk riil dari distribusi data secara visual, mendeteksi modalitas (apakah data memiliki satu puncak, dua puncak, atau seragam), serta mengonfirmasi pola sebaran secara cepat.
 
 
