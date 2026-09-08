@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fitur-Fitur TSFEL &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Fitur-Fitur TSFEL';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Crawling Data" href="Crawling%20Data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Kumpulan Materi Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Crawling%20Data.html">Crawling Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fitur-Fitur TSFEL</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FFitur-Fitur TSFEL.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Fitur-Fitur TSFEL.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fitur-Fitur TSFEL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-domain">1. Temporal Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-domain">2. Statistical Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-domain">3. Spectral Domain</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fitur-fitur-tsfel">
+<h1>Fitur-Fitur TSFEL<a class="headerlink" href="#fitur-fitur-tsfel" title="Link to this heading">#</a></h1>
+<section id="temporal-domain">
+<h2>1. Temporal Domain<a class="headerlink" href="#temporal-domain" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Absolute Energy
+Mengukur total energi sinyal absolut tanpa normalisasi panjang data.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Energy} = \sum_{i=0}^{N-1} x_i^2\]</div>
+<ul class="simple">
+<li><p>Area Under the Curve (AUC)
+Menghitung luas total di bawah kurva sinyal menggunakan aturan trapesium numerik dengan interval <span class="math notranslate nohighlight">\(\Delta t = 1/f_s\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{AUC} = \sum_{i=0}^{N-2} \frac{x_i + x_{i+1}}{2} \Delta t\]</div>
+<ul class="simple">
+<li><p>Autocorrelation
+Mengukur korelasi sinyal dengan dirinya sendiri pada lag <span class="math notranslate nohighlight">\(k\)</span> tertentu.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[R(k) = \frac{1}{N-k} \sum_{i=0}^{N-1-k} (x_i - \mu)(x_{i+k} - \mu)\]</div>
+<ul class="simple">
+<li><p>Centroid (Temporal)
+Menentukan titik pusat massa sinyal dalam domain waktu.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[C_t = \frac{\sum_{i=0}^{N-1} i \cdot x_i}{\sum_{i=0}^{N-1} x_i}\]</div>
+<ul class="simple">
+<li><p>Cumulative Sum (Cumsum)
+Fitur yang merepresentasikan deret akumulasi titik data: <span class="math notranslate nohighlight">\(S_k = \sum_{i=0}^{k} x_i\)</span>. Metrik turunan dari kurva akumulasi ini mencakup kemiringan (slope) atau luasnya.</p></li>
+<li><p>Distance
+Menghitung total panjang lintasan atau perpindahan 1D yang dilalui oleh sinyal antar titik berurutan.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[D = \sum_{i=0}^{N-2} \vert{}x_{i+1} - x_i\vert{}\]</div>
+<ul class="simple">
+<li><p>Entropy (Temporal / Approximate / Sample)
+Mengukur kompleksitas atau ketidakteraturan sinyal. Sebagai representasi Shannon Entropy pada probabilitas diskret <span class="math notranslate nohighlight">\(p(x_i)\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[H(x) = -\sum_{i} p(x_i) \log_2 p(x_i)\]</div>
+<ul class="simple">
+<li><p>Mean Absolute Diff (MADiff)
+Rata-rata selisih absolut antara sampel data yang berurutan.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{MADiff} = \frac{1}{N-1} \sum_{i=0}^{N-2} \vert{}x_{i+1} - x_i\vert{}\]</div>
+<ul class="simple">
+<li><p>Mean Differences (MDiff)
+Rata-rata perubahan sinyal berurutan (mencerminkan tren derivatif pertama).</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{MDiff} = \frac{1}{N-1} \sum_{i=0}^{N-2} (x_{i+1} - x_i) = \frac{x_{N-1} - x_0}{N-1}\]</div>
+<ul class="simple">
+<li><p>Median Absolute Diff (MedADiff)
+Nilai tengah dari selisih mutlak berurutan:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{MedADiff} = \text{median}(\vert{}x_{i+1} - x_i\vert{}), \quad i \in [0, N-2]\]</div>
+<ul class="simple">
+<li><p>Median Differences (MedDiff)
+Nilai tengah dari perubahan berurutan:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{MedDiff} = \text{median}(x_{i+1} - x_i), \quad i \in [0, N-2]\]</div>
+<ul class="simple">
+<li><p>Negative / Positive Turning Points
+Jumlah pembalikan arah lokal sinyal.
+Puncak positif: <span class="math notranslate nohighlight">\(x_{i-1} &lt; x_i\)</span> dan <span class="math notranslate nohighlight">\(x_i &gt; x_{i+1}\)</span>
+Lembah negatif: <span class="math notranslate nohighlight">\(x_{i-1} &gt; x_i\)</span> dan <span class="math notranslate nohighlight">\(x_i &lt; x_{i+1}\)</span></p></li>
+<li><p>Peak to Peak Distance
+Rentang dinamis antara amplitudo maksimum dan minimum sinyal.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{PTP} = \max(x) - \min(x)\]</div>
+<ul class="simple">
+<li><p>Root Mean Square (RMS)
+Nilai efektif besaran magnitudo sinyal.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{RMS} = \sqrt{\frac{1}{N} \sum_{i=0}^{N-1} x_i^2}\]</div>
+<ul class="simple">
+<li><p>Slope
+Kemiringan garis regresi linier terhadap waktu (<span class="math notranslate nohighlight">\(t = [0, 1, \dots, N-1]\)</span>).$<span class="math notranslate nohighlight">\(\beta = \frac{\sum_{i=0}^{N-1} (t_i - \bar{t})(x_i - \mu)}{\sum_{i=0}^{N-1} (t_i - \bar{t})^2}\)</span>$</p></li>
+<li><p>Zero Crossing Rate (ZCR)Frekuensi berapa kali sinyal memotong atau melewati nilai nol.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{ZCR} = \frac{1}{2(N-1)} \sum_{i=0}^{N-2} \vert{}\text{sgn}(x_{i+1}) - \text{sgn}(x_i)\vert{}\]</div>
+<ul class="simple">
+<li><p>Mean Crossing Rate (MCR)
+Frekuensi sinyal memotong nilai rata-ratanya (<span class="math notranslate nohighlight">\(\mu\)</span>). Dihitung dengan rumus yang sama seperti ZCR terhadap sinyal terpusat <span class="math notranslate nohighlight">\((x_i - \mu)\)</span>.</p></li>
+</ul>
+</section>
+<section id="statistical-domain">
+<h2>2. Statistical Domain<a class="headerlink" href="#statistical-domain" title="Link to this heading">#</a></h2>
+<p>Domain statistik merangkum distribusi amplitudo dan probabilitas data deret waktu tanpa mempertimbangkan urutan temporalnya.</p>
+<ul class="simple">
+<li><p>Mean (<span class="math notranslate nohighlight">\(\mu\)</span>)
+Nilai rata-rata aritmetika.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\mu = \frac{1}{N} \sum_{i=0}^{N-1} x_i\]</div>
+<ul class="simple">
+<li><p>Standard Deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) &amp; Variance (<span class="math notranslate nohighlight">\(\sigma^2\)</span>)
+Tingkat dispersi nilai di sekitar rata-rata.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sigma^2 = \frac{1}{N-1} \sum_{i=0}^{N-1} (x_i - \mu)^2, \quad \sigma = \sqrt{\sigma^2}\]</div>
+<ul class="simple">
+<li><p>Skewness
+Asimetri kurva distribusi probabilitas terhadap rata-rata.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Skewness} = \frac{\frac{1}{N} \sum_{i=0}^{N-1} (x_i - \mu)^3}{\sigma^3}\]</div>
+<ul class="simple">
+<li><p>Kurtosis
+Ketajaman puncak dan ketebalan ekor (tailedness) distribusi data.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Kurtosis} = \frac{\frac{1}{N} \sum_{i=0}^{N-1} (x_i - \mu)^4}{\sigma^4}\]</div>
+<ul class="simple">
+<li><p>Median
+Titik tengah data setelah diurutkan secara menaik (<span class="math notranslate nohighlight">\(x_{(0)} \le x_{(1)} \le \dots \le x_{(N-1)}\)</span>).</p></li>
+<li><p>Maximum &amp; Minimum
+Nilai ekstrem dari deret waktu: <span class="math notranslate nohighlight">\(x_{\max} = \max(x)\)</span> dan <span class="math notranslate nohighlight">\(x_{\min} = \min(x)\)</span>.</p></li>
+<li><p>Interquartile Range (IQR)Dispersi statistik yang merepresentasikan rentang 50% data tengah.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{IQR} = Q_3 - Q_1\]</div>
+<ul class="simple">
+<li><p>Quantiles / Percentiles
+Nilai ambang <span class="math notranslate nohighlight">\(q \in [0, 1]\)</span> yang membagi fraksi data di bawahnya.Mean Absolute Deviation (MAD)Rata-rata deviasi absolut terhadap nilai mean.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{MAD} = \frac{1}{N} \sum_{i=0}^{N-1} \vert{}x_i - \mu\vert{}\]</div>
+<ul class="simple">
+<li><p>Median Absolute Deviation (MedAD)Ukuran dispersi yang tahan terhadap pencilan (outliers).</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{MedAD} = \text{median}(\vert{}x_i - \text{median}(x)\vert{})\]</div>
+<ul class="simple">
+<li><p>Histogram FeaturesFrekuensi relatif atau kerapatan data dalam <span class="math notranslate nohighlight">\(B\)</span> bins interval amplitudo.</p></li>
+</ul>
+</section>
+<section id="spectral-domain">
+<h2>3. Spectral Domain<a class="headerlink" href="#spectral-domain" title="Link to this heading">#</a></h2>
+<p>Domain spektral mengubah sinyal ke representasi frekuensi melalui transformasi Fourier (<span class="math notranslate nohighlight">\(X_k = \text{FFT}(x)\)</span>) dengan magnitudo spektrum daya <span class="math notranslate nohighlight">\(S_k = \vert{}X_k\vert{}^2\)</span> pada frekuensi <span class="math notranslate nohighlight">\(f_k\)</span>.</p>
+<ul class="simple">
+<li><p>Fundamental Frequency (<span class="math notranslate nohighlight">\(f_0\)</span>)Frekuensi dasar sinyal periodik (biasanya puncak spektral signifikan pertama atau via autokorelasi).Spectral CentroidTitik pusat massa dari spektrum frekuensi (mencerminkan brightness atau sebaran frekuensi tinggi/rendah).</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[C_s = \frac{\sum_{k} f_k S_k}{\sum_{k} S_k}\]</div>
+<ul class="simple">
+<li><p>Spectral Spread / VarianceLebar sebaran frekuensi di sekitar centroid spektral.$<span class="math notranslate nohighlight">\(\text{Spread} = \sqrt{\frac{\sum_{k} (f_k - C_s)^2 S_k}{\sum_{k} S_k}}\)</span>$</p></li>
+<li><p>Spectral Skewness &amp; KurtosisMomen ke-3 dan ke-4 spektrum frekuensi yang dinormalisasi oleh simpangan baku spektral.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Skewness}_s = \frac{\sum_{k} \left(\frac{f_k - C_s}{\text{Spread}}\right)^3 S_k}{\sum_{k} S_k}, \quad \text{Kurtosis}_s = \frac{\sum_{k} \left(\frac{f_k - C_s}{\text{Spread}}\right)^4 S_k}{\sum_{k} S_k}\]</div>
+<ul class="simple">
+<li><p>Spectral Roll-offFrekuensi <span class="math notranslate nohighlight">\(f_R\)</span> di mana akumulasi daya spektral mencapai persentase tertentu (umumnya 85% atau 95%) dari total daya.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sum_{k=0}^{R} S_k = \alpha \sum_{k} S_k, \quad \alpha \in [0.85, 0.95]\]</div>
+<ul class="simple">
+<li><p>Spectral DecreasePenurunan energi spektrum secara progresif terhadap kenaikan frekuensi.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Decrease} = \frac{1}{\sum_{k=1}^{M-1} S_k} \sum_{k=1}^{M-1} \frac{S_k - S_0}{k}\]</div>
+<ul class="simple">
+<li><p>Spectral Slope
+Kemiringan garis regresi linier dari magnitudo spektral terhadap frekuensi.Spectral Flatness (Wiener Entropy)Rasio rata-rata geometrik terhadap rata-rata aritmetika dari spektrum daya. Bernilai mendekati 1 untuk white noise dan mendekati 0 untuk nada murni.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Flatness} = \frac{\exp\left(\frac{1}{M} \sum_{k=0}^{M-1} \ln S_k\right)}{\frac{1}{M} \sum_{k=0}^{M-1} S_k}\]</div>
+<ul class="simple">
+<li><p>Spectral Entropy
+Mengukur keragaman distribusi spektrum daya dinormalisasi <span class="math notranslate nohighlight">\(P_k = \frac{S_k}{\sum_j S_j}\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[H_s = -\sum_{k} P_k \log_2 P_k\]</div>
+<ul class="simple">
+<li><p>Spectral Distance
+Jarak kumulatif antar komponen magnitudo frekuensi berturutan:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[D_s = \sum_k \vert{}S_{k+1} - S_k\vert{}\]</div>
+<ul class="simple">
+<li><p>Power Bandwidth / Spectral Band PowerTotal daya atau fraksi daya dalam rentang frekuensi spesifik <span class="math notranslate nohighlight">\([f_a, f_b]\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P_{[f_a, f_b]} = \sum_{f_k = f_a}^{f_b} S_k\]</div>
+<ul class="simple">
+<li><p>Linear Prediction Coefficients (LPC)
+Koefisien <span class="math notranslate nohighlight">\(\alpha_i\)</span> dari model autoregressive yang memprediksi nilai <span class="math notranslate nohighlight">\(x_n\)</span> berdasarkan <span class="math notranslate nohighlight">\(p\)</span> sampel sebelumnya:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\hat{x}_n = -\sum_{i=1}^{p} \alpha_i x_{n-i}\]</div>
+<ul class="simple">
+<li><p>Mel-Frequency Cepstral Coefficients (MFCC)Representasi spektral yang memetakan logaritmik daya pada skala frekuensi Mel, lalu diterapkan Discrete Cosine Transform (DCT):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{Mel}(f) = 2595 \log_{10}\left(1 + \frac{f}{700}\right)\]</div>
+<ul class="simple">
+<li><p>Wavelet Features (Energy / Absolute Mean)
+Daya dan nilai rata-rata mutlak dari koefisien dekomposisi Wavelet Transform (DWT) pada skala atau sub-band tertentu:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[E_W = \sum_j \vert{}c_j\vert{}^2\]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Crawling%20Data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Crawling Data</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-domain">1. Temporal Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-domain">2. Statistical Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-domain">3. Spectral Domain</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
