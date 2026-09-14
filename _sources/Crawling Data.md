@@ -212,34 +212,31 @@ job_ch4 = s5_ch4.execute_batch(
 ```
 import folium
 
-# 1. Definisi AOI Kabupaten Mojokerto
+# 1. Definisi AOI Kecamatan Trowulan
 aoi = {
     "type": "FeatureCollection",
     "features": [
         {
             "type": "Feature",
             "properties": {
-                "nama": "Kabupaten Mojokerto",
+                "nama": "Kecamatan Trowulan",
+                "kabupaten": "Mojokerto",
                 "provinsi": "Jawa Timur",
             },
             "geometry": {
                 "type": "Polygon",
                 "coordinates": [
                     [
-                        [112.445, -7.362],
-                        [112.512, -7.375],
-                        [112.57, -7.42],
-                        [112.605, -7.51],
-                        [112.62, -7.62],
-                        [112.595, -7.725],
-                        [112.535, -7.785],
-                        [112.47, -7.76],
-                        [112.395, -7.68],
-                        [112.33, -7.595],
-                        [112.31, -7.49],
-                        [112.345, -7.415],
-                        [112.4, -7.38],
-                        [112.445, -7.362],
+                        [112.355, -7.525],
+                        [112.385, -7.520],
+                        [112.415, -7.535],
+                        [112.420, -7.560],
+                        [112.410, -7.595],
+                        [112.390, -7.605],
+                        [112.365, -7.595],
+                        [112.350, -7.575],
+                        [112.345, -7.545],
+                        [112.355, -7.525],  # Menutup poligon
                     ]
                 ],
             },
@@ -247,17 +244,17 @@ aoi = {
     ],
 }
 
-# 2. Inisialisasi peta interaktif di titik tengah Mojokerto (Lat: -7.55, Lon: 112.45)
+# 2. Inisialisasi peta interaktif di titik tengah Trowulan (Lat: -7.56, Lon: 112.38)
 m = folium.Map(
-    location=[-7.55, 112.45],
-    zoom_start=11,
-    tiles="CartoDB positron",  # Pilihan basemap: "OpenStreetMap", "CartoDB positron", atau "OpenTopoMap"
+    location=[-7.56, 112.38],
+    zoom_start=13,  # Zoom diperbesar agar fokus ke area kecamatan
+    tiles="CartoDB positron",
 )
 
-# 3. Poligon AOI ke Peta
+# 3. Tambahkan Poligon AOI ke Peta
 folium.GeoJson(
     aoi,
-    name="Batas AOI",
+    name="Batas AOI Trowulan",
     style_function=lambda feature: {
         "fillColor": "#ff7800",
         "color": "#e65100",
@@ -265,10 +262,17 @@ folium.GeoJson(
         "fillOpacity": 0.35,
     },
     tooltip=folium.GeoJsonTooltip(
-        fields=["nama", "provinsi"], aliases=["Wilayah:", "Provinsi:"]
+        fields=["nama", "kabupaten", "provinsi"],
+        aliases=["Kecamatan:", "Kabupaten:", "Provinsi:"],
     ),
 ).add_to(m)
 
+# 4. Tambahkan layer satelit ESRI
+folium.TileLayer(
+    tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    attr="Esri",
+    name="Esri Satellite",
+).add_to(m)
 
 folium.LayerControl().add_to(m)
 ```
@@ -276,22 +280,21 @@ folium.LayerControl().add_to(m)
 #### Gambar Peta
 
 <iframe 
-  src="https://andri-24.github.io/peta-aoi-kbtpnmjkrt/peta_aoi_mojokerto.html" 
+  src="https://andri-24.github.io/peta-aoi-kbtpnmjkrt/peta_aoi_trowulan.html" 
   width="100%" 
   height="500px" 
   style="border: 1px solid #ccc; border-radius: 8px;">
 </iframe>
 
-#### Deskripsi Wilayah: Area of Interest (AOI) Kabupaten Mojokerto
+#### Deskripsi Wilayah: Area of Interest (AOI) Kecamatan Trowulan
 
 Peta interaktif di atas merepresentasikan batas spasial Area of Interest (AOI) yang digunakan sebagai acuan pemrosesan data penginderaan jauh atmosfer dari satelit Sentinel-5P Level-2 (TROPOMI) melalui platform openEO Copernicus Data Space Ecosystem.
-- Nama Wilayah: Kabupaten Mojokerto, Provinsi Jawa Timur, Indonesia
-- Geometri Spasial: Poligon batas administratif tertutup (14 titik koordinat verteks)
+- Nama Wilayah: Kecamatan Trowulan, Kabupaten Mojokerto, Provinsi Jawa Timur, Indonesia
+- Geometri Spasial: Poligon batas administratif tertutup (9 titik koordinat verteks)
 - Cakupan Bounding Box ($spatial\_extent$):
--- Bujur (Longitude): $112.31^\circ \text{ BT} - 112.62^\circ \text{ BT}$
--- Lintang (Latitude): $7.362^\circ \text{ LS} - 7.785^\circ \text{ LS}$
-- Karakteristik Wilayah:
-Wilayah kajian mencakup topografi yang bervariasi, mulai dari dataran rendah industri dan permukiman di sisi utara/tengah yang berbatasan langsung dengan poros ekonomi Surabaya–Sidoarjo, hingga kawasan dataran tinggi dan pegunungan di sisi selatan (lereng Gunung Arjuno-Welirang dan Anjasmoro).
+Bujur (Longitude): $112.340^\circ \text{ BT} - 112.420^\circ \text{ BT}$
+Lintang (Latitude): $7.525^\circ \text{ LS} - 7.615^\circ \text{ LS}$
+- Karakteristik Wilayah:Wilayah kajian didominasi oleh topografi dataran rendah aluvial yang relatif datar di bagian barat daya Kabupaten Mojokerto (berbatasan langsung dengan Kabupaten Jombang). Karakteristik tutupan lahannya merupakan perpaduan antara lahan pertanian irigasi intensif, pemukiman pedesaan-suburban, koridor jalur arteri transportasi nasional (jalan nasional Surabaya–Madiun), serta kawasan cagar budaya dan situs arkeologi peninggalan era Majapahit dengan keberadaan sentra industri batu bata lokal.
 
 ### 2.2.2 Visualisasi Data Grafik(selama 30 hari)
 #### CO
@@ -534,4 +537,9 @@ Representasi grafis dalam bentuk baris atau balok frekuensi yang membagi rentang
 | lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0            | 0           | 6972.913707 | 0            | 0        | 0         | 0         | 112.4663501 | 62        |
 
 
-### 2.2.5 
+### 2.2.5 Identifikasi Missing Value
+
+
+
+
+### 2.2.6 Identifikasi Outlier
