@@ -658,7 +658,26 @@ Dataset bersih! Tidak ditemukan missing value.
 | 1 | 2025-09-03 | 1855.129883 | 0 | 1 | 1 | 2 |
 
 
-#### membuat grafik data polutan
+### Handling Outlier dengan menggunakan Rolling Median Imputation
+
+#### CO
+
+![image](https://hackmd.io/_uploads/HJ8hyOoFfx.png)
+
+#### NO2
+
+![image](https://hackmd.io/_uploads/Hyd-guoKMe.png)
+
+#### SO2
+
+![image](https://hackmd.io/_uploads/H1fNe_sFGg.png)
+
+#### CH4
+
+![image](https://hackmd.io/_uploads/ryaSlujFMg.png)
+
+
+#### Membuat grafik data polutan
 data polutan jadi jadi sebanyak 4 channel yaitu, co, no2, so2, dan ch4
 
 contoh
