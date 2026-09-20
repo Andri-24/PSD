@@ -61,7 +61,7 @@ Visit https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code
 Authenticated using device code flow.
 ```
 
-### 2.1.2 Setting Area Of Interest(AOI)
+#### 2.1.2 Setting Area Of Interest(AOI)
 
 ```
 aoi = {
@@ -96,7 +96,7 @@ aoi = {
 }
 ```
 
-### 2.1.3 Load Data
+#### 2.1.3 Load Data
 
 - Data Karbon Monoksida ($\text{CO}$)
 
