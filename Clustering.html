@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clustering &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clustering';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Fitur-Fitur TSFEL" href="Fitur-Fitur%20TSFEL.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Kumpulan Materi Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Crawling%20Data.html">Crawling Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fitur-Fitur%20TSFEL.html">Fitur-Fitur TSFEL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clustering</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClustering.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clustering.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clustering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-clustering">1. Pengertian Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kegunaan-contoh-aplikasi">Kegunaan &amp; Contoh Aplikasi:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-menggunakan-k-means">2. Clustering Menggunakan K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">Konsep Dasar:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-langkah-demi-langkah-k-means">3. Algoritma Langkah demi Langkah K-Means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persamaan-matematis-rumus">4. Persamaan Matematis (Rumus)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-jarak-euclidean-euclidean-distance">A. Jarak Euclidean (Euclidean Distance)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-pembaruan-centroid">B. Pembaruan Centroid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-studi-kasus-sederhana">5. Contoh Perhitungan Manual (Studi Kasus Sederhana)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-1"><strong>Iterasi 1</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-inisialisasi-centroid"><strong>Langkah 1: Inisialisasi Centroid</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-hitung-jarak-euclidean-alokasi-cluster"><strong>Langkah 2: Hitung Jarak Euclidean &amp; Alokasi Cluster</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-hitung-ulang-centroid"><strong>Langkah 3: Hitung Ulang Centroid</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-2"><strong>Iterasi 2</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penentuan-jumlah-cluster-optimal-elbow-method">6. Penentuan Jumlah Cluster Optimal (Elbow Method)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-k-means">7. Kelebihan dan Kekurangan K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="clustering">
+<h1>Clustering<a class="headerlink" href="#clustering" title="Link to this heading">#</a></h1>
+<section id="pengertian-clustering">
+<h2>1. Pengertian Clustering<a class="headerlink" href="#pengertian-clustering" title="Link to this heading">#</a></h2>
+<p><strong>Clustering</strong> (Pengelompokan) adalah salah satu teknik utama dalam <em>Unsupervised Machine Learning</em> yang bertujuan untuk membagi himpunan data (<em>dataset</em>) menjadi beberapa kelompok (<em>cluster</em>). Data dalam satu kelompok yang sama memiliki tingkat kemiripan (<em>similarity</em>) yang tinggi, sedangkan data antar-kelompok yang berbeda memiliki tingkat perbedaan (<em>dissimilarity</em>) yang signifikan.</p>
+<p>Berbeda dengan <em>Supervised Learning</em> (seperti Klasifikasi), <em>Clustering</em> tidak membutuhkan label atau target variabel sebelumnya.</p>
+<section id="kegunaan-contoh-aplikasi">
+<h3>Kegunaan &amp; Contoh Aplikasi:<a class="headerlink" href="#kegunaan-contoh-aplikasi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Segmentasi Pasar/Pelanggan:</strong> Membagi pelanggan berdasarkan pola pembelian atau demografi.</p></li>
+<li><p><strong>Deteksi Anomali:</strong> Mengidentifikasi transaksi keuangan yang mencurigakan (outlier).</p></li>
+<li><p><strong>Kompresi Gambar:</strong> Mengelompokkan warna-warna serupa untuk mengurangi ukuran berkas.</p></li>
+<li><p><strong>Sistem Rekomendasi:</strong> Mengelompokkan pengguna dengan selera film atau produk yang mirip.</p></li>
+</ul>
+</section>
+</section>
+<section id="clustering-menggunakan-k-means">
+<h2>2. Clustering Menggunakan K-Means<a class="headerlink" href="#clustering-menggunakan-k-means" title="Link to this heading">#</a></h2>
+<p><strong>K-Means Clustering</strong> adalah salah satu algoritma pengelompokan berbasis jarak (<em>distance-based</em>) yang paling populer dan efisien. Parameter <span class="math notranslate nohighlight">\(K\)</span> mewakili jumlah kelompok (<em>cluster</em>) yang ditentukan secara eksplisit oleh pengguna sebelum proses pelatihan dimulai.</p>
+<section id="konsep-dasar">
+<h3>Konsep Dasar:<a class="headerlink" href="#konsep-dasar" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Centroid:</strong> Titik pusat dari suatu <em>cluster</em>.</p></li>
+<li><p><strong>Variansi Internal (<em>Inertia</em>):</strong> Total jarak kuadrat antara setiap data poin dengan <em>centroid</em> kelompoknya. Tujuan K-Means adalah meminimalkan variansi ini.</p></li>
+</ul>
+</section>
+</section>
+<section id="algoritma-langkah-demi-langkah-k-means">
+<h2>3. Algoritma Langkah demi Langkah K-Means<a class="headerlink" href="#algoritma-langkah-demi-langkah-k-means" title="Link to this heading">#</a></h2>
+<p>Proses iteratif K-Means bekerja melalui tahapan berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Inisialisasi:</strong> Tentukan jumlah <span class="math notranslate nohighlight">\(K\)</span> <em>cluster</em> dan pilih <span class="math notranslate nohighlight">\(K\)</span> titik secara acak dari data sebagai <em>centroid</em> awal.</p></li>
+<li><p><strong>Alokasi Cluster (Assignment Step):</strong> Hitung jarak setiap titik data ke seluruh <em>centroid</em>. Masukkan data poin ke <em>cluster</em> dengan <em>centroid</em> terdekat.</p></li>
+<li><p><strong>Pembaruan Centroid (Update Step):</strong> Hitung ulang posisi <em>centroid</em> untuk setiap <em>cluster</em> dengan mengambil rata-rata (<em>mean</em>) posisi seluruh data poin yang terikat pada <em>cluster</em> tersebut.</p></li>
+<li><p><strong>Konvergensi:</strong> Ulangi langkah 2 dan 3 sampai salah satu kondisi terpenuhi:</p>
+<ul class="simple">
+<li><p>Posisi <em>centroid</em> tidak lagi berubah (atau perubahannya di bawah toleransi).</p></li>
+<li><p>Keanggotaan <em>cluster</em> pada setiap titik data tidak berubah.</p></li>
+<li><p>Mencapai jumlah iterasi maksimum.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="persamaan-matematis-rumus">
+<h2>4. Persamaan Matematis (Rumus)<a class="headerlink" href="#persamaan-matematis-rumus" title="Link to this heading">#</a></h2>
+<section id="a-jarak-euclidean-euclidean-distance">
+<h3>A. Jarak Euclidean (Euclidean Distance)<a class="headerlink" href="#a-jarak-euclidean-euclidean-distance" title="Link to this heading">#</a></h3>
+<p>Metrik standar untuk mengukur jarak antara data poin <span class="math notranslate nohighlight">\(p = (x_1, y_1)\)</span> dan centroid <span class="math notranslate nohighlight">\(c = (x_2, y_2)\)</span> dalam ruang 2-dimensi:</p>
+<div class="math notranslate nohighlight">
+\[
+d(p, c) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}
+\]</div>
+<p>Untuk data dengan <span class="math notranslate nohighlight">\(n\)</span>-dimensi:</p>
+<div class="math notranslate nohighlight">
+\[
+d(p, c) = \sqrt{\sum_{i=1}^{n} (p_i - c_i)^2}
+\]</div>
+</section>
+<section id="b-pembaruan-centroid">
+<h3>B. Pembaruan Centroid<a class="headerlink" href="#b-pembaruan-centroid" title="Link to this heading">#</a></h3>
+<p>Posisi baru dari centroid <span class="math notranslate nohighlight">\(\mu_k\)</span> untuk cluster <span class="math notranslate nohighlight">\(C_k\)</span> dihitung dengan rata-rata aritmetika seluruh titik <span class="math notranslate nohighlight">\(x_i\)</span> dalam kelompok tersebut:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_k = \frac{1}{\vert{}C_k\vert{}} \sum_{x_i \in C_k} x_i
+\]</div>
+<p>Di mana <span class="math notranslate nohighlight">\(\vert{}C_k\vert{}\)</span> adalah jumlah total titik data dalam cluster <span class="math notranslate nohighlight">\(k\)</span>.</p>
+</section>
+</section>
+<section id="contoh-perhitungan-manual-studi-kasus-sederhana">
+<h2>5. Contoh Perhitungan Manual (Studi Kasus Sederhana)<a class="headerlink" href="#contoh-perhitungan-manual-studi-kasus-sederhana" title="Link to this heading">#</a></h2>
+<p>Misalkan kita memiliki 4 data pelanggan berdasarkan dua fitur: <strong>Usia (</strong><span class="math notranslate nohighlight">\(X\)</span><strong>)</strong> dan <strong>Skor Belanja (</strong><span class="math notranslate nohighlight">\(Y\)</span><strong>)</strong>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data</p></th>
+<th class="head"><p>Pelanggan</p></th>
+<th class="head"><p>Usia (<span class="math notranslate nohighlight">\(X\)</span>)</p></th>
+<th class="head"><p>Skor Belanja (<span class="math notranslate nohighlight">\(Y\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p>Pelanggan 1</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B</strong></p></td>
+<td><p>Pelanggan 2</p></td>
+<td><p>2</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>C</strong></p></td>
+<td><p>Pelanggan 3</p></td>
+<td><p>8</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>D</strong></p></td>
+<td><p>Pelanggan 4</p></td>
+<td><p>8</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Kita tentukan jumlah kelompok <span class="math notranslate nohighlight">\(K = 2\)</span>.</p>
+<section id="iterasi-1">
+<h3><strong>Iterasi 1</strong><a class="headerlink" href="#iterasi-1" title="Link to this heading">#</a></h3>
+<section id="langkah-1-inisialisasi-centroid">
+<h4><strong>Langkah 1: Inisialisasi Centroid</strong><a class="headerlink" href="#langkah-1-inisialisasi-centroid" title="Link to this heading">#</a></h4>
+<p>Secara acak, kita pilih <strong>A</strong> dan <strong>C</strong> sebagai centroid awal:</p>
+<ul class="simple">
+<li><p>Centroid 1 (<span class="math notranslate nohighlight">\(C_1\)</span>) = A = <span class="math notranslate nohighlight">\((2, 2)\)</span></p></li>
+<li><p>Centroid 2 (<span class="math notranslate nohighlight">\(C_2\)</span>) = C = <span class="math notranslate nohighlight">\((8, 6)\)</span></p></li>
+</ul>
+</section>
+<section id="langkah-2-hitung-jarak-euclidean-alokasi-cluster">
+<h4><strong>Langkah 2: Hitung Jarak Euclidean &amp; Alokasi Cluster</strong><a class="headerlink" href="#langkah-2-hitung-jarak-euclidean-alokasi-cluster" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Untuk Titik A</strong> <span class="math notranslate nohighlight">\((2, 2)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(A, C_1) = \sqrt{(2-2)^2 + (2-2)^2} = \sqrt{0 + 0} = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(A, C_2) = \sqrt{(2-8)^2 + (2-6)^2} = \sqrt{(-6)^2 + (-4)^2} = \sqrt{36 + 16} = \sqrt{52} \approx 7.21\)</span></p></li>
+<li><p><strong>Hasil:</strong> Dekat ke <span class="math notranslate nohighlight">\(C_1 \rightarrow\)</span> <strong>Cluster 1</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Untuk Titik B</strong> <span class="math notranslate nohighlight">\((2, 6)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(B, C_1) = \sqrt{(2-2)^2 + (6-2)^2} = \sqrt{0 + 16} = 4\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(B, C_2) = \sqrt{(2-8)^2 + (6-6)^2} = \sqrt{(-6)^2 + 0} = 6\)</span></p></li>
+<li><p><strong>Hasil:</strong> Dekat ke <span class="math notranslate nohighlight">\(C_1 \rightarrow\)</span> <strong>Cluster 1</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Untuk Titik C</strong> <span class="math notranslate nohighlight">\((8, 6)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(C, C_1) = \sqrt{(8-2)^2 + (6-2)^2} = \sqrt{36 + 16} = 7.21\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(C, C_2) = \sqrt{(8-8)^2 + (6-6)^2} = 0\)</span></p></li>
+<li><p><strong>Hasil:</strong> Dekat ke <span class="math notranslate nohighlight">\(C_2 \rightarrow\)</span> <strong>Cluster 2</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Untuk Titik D</strong> <span class="math notranslate nohighlight">\((8, 8)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(D, C_1) = \sqrt{(8-2)^2 + (8-2)^2} = \sqrt{36 + 36} = \sqrt{72} \approx 8.49\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(D, C_2) = \sqrt{(8-8)^2 + (8-6)^2} = \sqrt{0 + 4} = 2\)</span></p></li>
+<li><p><strong>Hasil:</strong> Dekat ke <span class="math notranslate nohighlight">\(C_2 \rightarrow\)</span> <strong>Cluster 2</strong></p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Hasil Anggota Cluster Iterasi 1:</strong></p>
+<ul class="simple">
+<li><p><strong>Cluster 1:</strong> <span class="math notranslate nohighlight">\(\{A, B\}\)</span></p></li>
+<li><p><strong>Cluster 2:</strong> <span class="math notranslate nohighlight">\(\{C, D\}\)</span></p></li>
+</ul>
+</section>
+<section id="langkah-3-hitung-ulang-centroid">
+<h4><strong>Langkah 3: Hitung Ulang Centroid</strong><a class="headerlink" href="#langkah-3-hitung-ulang-centroid" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Centroid Baru</strong> <span class="math notranslate nohighlight">\(C_1\)</span> (Rata-rata titik A <span class="math notranslate nohighlight">\((2,2)\)</span> dan B <span class="math notranslate nohighlight">\((2,6)\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+  C_1 = \left( \frac{2+2}{2}, \frac{2+6}{2} \right) = (2, 4)
+  \]</div>
+</li>
+<li><p><strong>Centroid Baru</strong> <span class="math notranslate nohighlight">\(C_2\)</span> (Rata-rata titik C <span class="math notranslate nohighlight">\((8,6)\)</span> dan D <span class="math notranslate nohighlight">\((8,8)\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+  C_2 = \left( \frac{8+8}{2}, \frac{6+8}{2} \right) = (8, 7)
+  \]</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="iterasi-2">
+<h3><strong>Iterasi 2</strong><a class="headerlink" href="#iterasi-2" title="Link to this heading">#</a></h3>
+<p>Centroid terkini: <span class="math notranslate nohighlight">\(C_1 = (2, 4)\)</span> dan <span class="math notranslate nohighlight">\(C_2 = (8, 7)\)</span></p>
+<ol class="arabic simple">
+<li><p><strong>Titik A</strong> <span class="math notranslate nohighlight">\((2, 2)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(A, C_1) = \sqrt{(2-2)^2 + (2-4)^2} = \sqrt{4} = 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(A, C_2) = \sqrt{(2-8)^2 + (2-7)^2} = \sqrt{36 + 25} = \sqrt{61} \approx 7.81\)</span></p></li>
+<li><p><strong>Cluster 1</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Titik B</strong> <span class="math notranslate nohighlight">\((2, 6)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(B, C_1) = \sqrt{(2-2)^2 + (6-4)^2} = \sqrt{4} = 2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(B, C_2) = \sqrt{(2-8)^2 + (6-7)^2} = \sqrt{36 + 1} = \sqrt{37} \approx 6.08\)</span></p></li>
+<li><p><strong>Cluster 1</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Titik C</strong> <span class="math notranslate nohighlight">\((8, 6)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(C, C_1) = \sqrt{(8-2)^2 + (6-4)^2} = \sqrt{36 + 4} = \sqrt{40} \approx 6.32\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(C, C_2) = \sqrt{(8-8)^2 + (6-7)^2} = \sqrt{1} = 1\)</span></p></li>
+<li><p><strong>Cluster 2</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Titik D</strong> <span class="math notranslate nohighlight">\((8, 8)\)</span><strong>:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d(D, C_1) = \sqrt{(8-2)^2 + (8-4)^2} = \sqrt{36 + 16} = \sqrt{52} \approx 7.21\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(d(D, C_2) = \sqrt{(8-8)^2 + (8-7)^2} = \sqrt{1} = 1\)</span></p></li>
+<li><p><strong>Cluster 2</strong></p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Hasil Anggota Cluster Iterasi 2:</strong></p>
+<ul class="simple">
+<li><p><strong>Cluster 1:</strong> <span class="math notranslate nohighlight">\(\{A, B\}\)</span></p></li>
+<li><p><strong>Cluster 2:</strong> <span class="math notranslate nohighlight">\(\{C, D\}\)</span></p></li>
+</ul>
+<p>Karena keanggotaan cluster pada <strong>Iterasi 2</strong> sama persis dengan <strong>Iterasi 1</strong>, maka algoritma telah <strong>KONVERGEN</strong> dan perhitungan dihentikan.</p>
+</section>
+</section>
+<section id="penentuan-jumlah-cluster-optimal-elbow-method">
+<h2>6. Penentuan Jumlah Cluster Optimal (Elbow Method)<a class="headerlink" href="#penentuan-jumlah-cluster-optimal-elbow-method" title="Link to this heading">#</a></h2>
+<p>Salah satu tantangan utama pada K-Means adalah memilih nilai <span class="math notranslate nohighlight">\(K\)</span> terbaik. Teknik paling populer adalah <strong>Elbow Method</strong>:</p>
+<ol class="arabic">
+<li><p>Jalankan K-Means untuk serangkaian nilai <span class="math notranslate nohighlight">\(K\)</span> (misal <span class="math notranslate nohighlight">\(K = 1\)</span> hingga <span class="math notranslate nohighlight">\(K = 10\)</span>).</p></li>
+<li><p>Hitung nilai <strong>WCSS</strong> (<em>Within-Cluster Sum of Squares</em>) untuk setiap <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   WCSS = \sum_{k=1}^{K} \sum_{x_i \in C_k} d(x_i, \mu_k)^2
+   \]</div>
+</li>
+<li><p>Buat grafik antara Nilai <span class="math notranslate nohighlight">\(K\)</span> (Sumbu X) vs WCSS (Sumbu Y).</p></li>
+<li><p>Pilih nilai <span class="math notranslate nohighlight">\(K\)</span> pada titik di mana grafik membentuk “siku” (<em>elbow</em>), yaitu ketika penurunan WCSS mulai melambat secara signifikan.</p></li>
+</ol>
+</section>
+<section id="kelebihan-dan-kekurangan-k-means">
+<h2>7. Kelebihan dan Kekurangan K-Means<a class="headerlink" href="#kelebihan-dan-kekurangan-k-means" title="Link to this heading">#</a></h2>
+<section id="kelebihan">
+<h3>Kelebihan:<a class="headerlink" href="#kelebihan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sederhana, mudah dipahami, dan diimplementasikan.</p></li>
+<li><p>Sangat cepat dan efisien secara komputasi untuk data berukuran besar.</p></li>
+<li><p>Mudah beradaptasi dengan sampel data baru.</p></li>
+</ul>
+</section>
+<section id="kekurangan">
+<h3>Kekurangan:<a class="headerlink" href="#kekurangan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Sensitif terhadap pemilihan centroid awal (dapat diatasi dengan algoritma <strong>K-Means++</strong>).</p></li>
+<li><p>Sensitif terhadap <strong>Outlier</strong> (pencilan data dapat menggeser posisi centroid).</p></li>
+<li><p>Sulit menangani <em>cluster</em> dengan bentuk non-spherical (bukan lingkaran/bola) atau ukuran yang bervariasi tajam.</p></li>
+<li><p>Memerlukan penentuan nilai <span class="math notranslate nohighlight">\(K\)</span> secara manual di awal.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Fitur-Fitur%20TSFEL.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fitur-Fitur TSFEL</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-clustering">1. Pengertian Clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kegunaan-contoh-aplikasi">Kegunaan &amp; Contoh Aplikasi:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-menggunakan-k-means">2. Clustering Menggunakan K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">Konsep Dasar:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-langkah-demi-langkah-k-means">3. Algoritma Langkah demi Langkah K-Means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persamaan-matematis-rumus">4. Persamaan Matematis (Rumus)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-jarak-euclidean-euclidean-distance">A. Jarak Euclidean (Euclidean Distance)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-pembaruan-centroid">B. Pembaruan Centroid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-studi-kasus-sederhana">5. Contoh Perhitungan Manual (Studi Kasus Sederhana)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-1"><strong>Iterasi 1</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-inisialisasi-centroid"><strong>Langkah 1: Inisialisasi Centroid</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-hitung-jarak-euclidean-alokasi-cluster"><strong>Langkah 2: Hitung Jarak Euclidean &amp; Alokasi Cluster</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-hitung-ulang-centroid"><strong>Langkah 3: Hitung Ulang Centroid</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-2"><strong>Iterasi 2</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penentuan-jumlah-cluster-optimal-elbow-method">6. Penentuan Jumlah Cluster Optimal (Elbow Method)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-k-means">7. Kelebihan dan Kekurangan K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -43,9 +43,64 @@ Kualitas udara di suatu daerah dipengaruhi oleh konsentrasi berbagai polutan atm
 
 ### 2.1 Collecting Data
 
-### 2.1.1 Data Karbon Monoksida ($\text{CO}$)
+#### 2.1.1 Hubungkan Data ke Web Copernicus
 
-#### Load Data
+```
+!pip install openeo
+import openeo
+```
+
+```
+import openeo
+connection = openeo.connect("openeo.dataspace.copernicus.eu").authenticate_oidc()
+```
+
+```
+Visit https://identity.dataspace.copernicus.eu/auth/realms/CDSE/device?user_code=MSAU-FFTF 📋 to authenticate.
+✅ Authorized successfully
+Authenticated using device code flow.
+```
+
+### 2.1.2 Setting Area Of Interest(AOI)
+
+```
+aoi = {
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "nama": "Kecamatan Trowulan",
+                "kabupaten": "Mojokerto",
+                "provinsi": "Jawa Timur",
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [112.355, -7.525],
+                        [112.385, -7.520],
+                        [112.415, -7.535],
+                        [112.420, -7.560],
+                        [112.410, -7.595],
+                        [112.390, -7.605],
+                        [112.365, -7.595],
+                        [112.350, -7.575],
+                        [112.345, -7.545],
+                        [112.355, -7.525],
+                    ]
+                ],
+            },
+        }
+    ],
+}
+```
+
+### 2.1.3 Load Data
+
+- Data Karbon Monoksida ($\text{CO}$)
+
+
 
 ```
 s5_co = connection.load_collection(
@@ -85,9 +140,7 @@ job_co = s5_co.execute_batch(
 0:03:40 Job 'j-2609171341534a33a490e2b8585224ef': finished (progress 100%)
 ```
 
-### 2.1.2 Data Nitrogen Dioksida ($\text{NO}_2$)
-
-#### Load Data
+- Data Nitrogen Dioksida ($\text{NO}_2$)
 
 ```
 s5_co = connection.load_collection(
@@ -128,9 +181,7 @@ job_co = s5_co.execute_batch(
 0:04:39 Job 'j-260917134625496091f98277863518d5': finished (progress 100%)
 ```
 
-### 2.1.3 Data Sulfur Dioksida ($\text{SO}_2$)
-
-#### Load Data
+- Data Sulfur Dioksida ($\text{SO}_2$)
 
 ```
 s5_co = connection.load_collection(
@@ -171,9 +222,7 @@ job_co = s5_co.execute_batch(
 0:04:38 Job 'j-2609171352034c4bbf2bad8cff40991e': finished (progress 100%)
 ```
 
-### 2.1.4 Data Metana ($\text{CH}_4$)
-
-#### Load Data
+- Data Metana ($\text{CH}_4$)
 
 ```
 s5_co = connection.load_collection(
@@ -215,76 +264,6 @@ job_co = s5_co.execute_batch(
 
 ## 2.2 Eksplorasi Data
 ### 2.2.1 Visualisasi Data
-#### Kode Python Menampilkan Peta
-
-```
-import folium
-
-# 1. Definisi AOI Kecamatan Trowulan
-aoi = {
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "type": "Feature",
-            "properties": {
-                "nama": "Kecamatan Trowulan",
-                "kabupaten": "Mojokerto",
-                "provinsi": "Jawa Timur",
-            },
-            "geometry": {
-                "type": "Polygon",
-                "coordinates": [
-                    [
-                        [112.355, -7.525],
-                        [112.385, -7.520],
-                        [112.415, -7.535],
-                        [112.420, -7.560],
-                        [112.410, -7.595],
-                        [112.390, -7.605],
-                        [112.365, -7.595],
-                        [112.350, -7.575],
-                        [112.345, -7.545],
-                        [112.355, -7.525],  # Menutup poligon
-                    ]
-                ],
-            },
-        }
-    ],
-}
-
-# 2. Inisialisasi peta interaktif di titik tengah Trowulan (Lat: -7.56, Lon: 112.38)
-m = folium.Map(
-    location=[-7.56, 112.38],
-    zoom_start=13,  # Zoom diperbesar agar fokus ke area kecamatan
-    tiles="CartoDB positron",
-)
-
-# 3. Tambahkan Poligon AOI ke Peta
-folium.GeoJson(
-    aoi,
-    name="Batas AOI Trowulan",
-    style_function=lambda feature: {
-        "fillColor": "#ff7800",
-        "color": "#e65100",
-        "weight": 2.5,
-        "fillOpacity": 0.35,
-    },
-    tooltip=folium.GeoJsonTooltip(
-        fields=["nama", "kabupaten", "provinsi"],
-        aliases=["Kecamatan:", "Kabupaten:", "Provinsi:"],
-    ),
-).add_to(m)
-
-# 4. Tambahkan layer satelit ESRI
-folium.TileLayer(
-    tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-    attr="Esri",
-    name="Esri Satellite",
-).add_to(m)
-
-folium.LayerControl().add_to(m)
-```
-
 #### Gambar Peta
 
 <iframe 
@@ -304,7 +283,7 @@ Bujur (Longitude): $112.340^\circ \text{ BT} - 112.420^\circ \text{ BT}$
 Lintang (Latitude): $7.525^\circ \text{ LS} - 7.615^\circ \text{ LS}$
 - Karakteristik Wilayah:Wilayah kajian didominasi oleh topografi dataran rendah aluvial yang relatif datar di bagian barat daya Kabupaten Mojokerto (berbatasan langsung dengan Kabupaten Jombang). Karakteristik tutupan lahannya merupakan perpaduan antara lahan pertanian irigasi intensif, pemukiman pedesaan-suburban, koridor jalur arteri transportasi nasional (jalan nasional Surabaya–Madiun), serta kawasan cagar budaya dan situs arkeologi peninggalan era Majapahit dengan keberadaan sentra industri batu bata lokal.
 
-### 2.2.2 Visualisasi Data Grafik(selama 30 hari)
+### 2.2.2 Visualisasi Data Grafik
 #### CO
 
 - Gambar Grafik
@@ -676,9 +655,3 @@ Dataset bersih! Tidak ditemukan missing value.
 
 ![image](https://hackmd.io/_uploads/ryaSlujFMg.png)
 
-
-#### Membuat grafik data polutan
-data polutan jadi jadi sebanyak 4 channel yaitu, co, no2, so2, dan ch4
-
-contoh
-![image](https://hackmd.io/_uploads/By_YuyrtGg.png)
