@@ -103,6 +103,7 @@ aoi = {
 
 
 ```
+# 1. Load data koleksi Sentinel-5P L2
 s5_co = connection.load_collection(
     "SENTINEL_5P_L2",
     temporal_extent=["2025-08-24", "2026-08-24"],
@@ -115,9 +116,19 @@ s5_co = connection.load_collection(
     bands=["CO"],
 )
 
-s5_co = s5_co.aggregate_temporal_period(reducer="mean", period="day")
-s5_co = s5_co.aggregate_spatial(reducer="mean", geometries=aoi)
+# 2. Agregasi temporal harian
+s5_co = s5_co.aggregate_temporal_period(
+    period="day",
+    reducer="mean"
+)
 
+# 3. Agregasi spasial sesuai dengan AOI yang sudah kamu definisikan sebelumnya
+s5_co = s5_co.aggregate_spatial(
+    geometries=aoi,
+    reducer="mean"
+)
+
+# 4. Eksekusi batch job untuk menyimpan ke file NetCDF (.nc)
 job_co = s5_co.execute_batch(
     title="Trowulan CO Extraction",
     outputfile="trowulan_co.nc"
@@ -125,25 +136,28 @@ job_co = s5_co.execute_batch(
 ```
 
 ```
-0:00:00 Job 'j-2609171341534a33a490e2b8585224ef': send 'start'
-0:00:04 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:00:10 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:00:16 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:00:24 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:00:35 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:00:47 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:01:02 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:01:22 Job 'j-2609171341534a33a490e2b8585224ef': queued (progress 0%)
-0:01:46 Job 'j-2609171341534a33a490e2b8585224ef': running (progress N/A)
-0:02:16 Job 'j-2609171341534a33a490e2b8585224ef': running (progress N/A)
-0:02:54 Job 'j-2609171341534a33a490e2b8585224ef': running (progress N/A)
-0:03:40 Job 'j-2609171341534a33a490e2b8585224ef': finished (progress 100%)
+0:00:00 Job 'j-26100216401647c99714542575ec9423': send 'start'
+0:00:03 Job 'j-26100216401647c99714542575ec9423': queued (progress 0%)
+0:00:08 Job 'j-26100216401647c99714542575ec9423': queued (progress 0%)
+0:00:14 Job 'j-26100216401647c99714542575ec9423': queued (progress 0%)
+0:00:22 Job 'j-26100216401647c99714542575ec9423': queued (progress 0%)
+0:00:32 Job 'j-26100216401647c99714542575ec9423': queued (progress 0%)
+0:00:45 Job 'j-26100216401647c99714542575ec9423': queued (progress 0%)
+0:01:00 Job 'j-26100216401647c99714542575ec9423': running (progress N/A)
+0:01:20 Job 'j-26100216401647c99714542575ec9423': running (progress N/A)
+0:01:44 Job 'j-26100216401647c99714542575ec9423': running (progress N/A)
+0:02:14 Job 'j-26100216401647c99714542575ec9423': running (progress N/A)
+0:02:51 Job 'j-26100216401647c99714542575ec9423': running (progress N/A)
+0:03:38 Job 'j-26100216401647c99714542575ec9423': running (progress N/A)
+0:04:36 Job 'j-26100216401647c99714542575ec9423': running (progress N/A)
+0:05:37 Job 'j-26100216401647c99714542575ec9423': finished (progress 100%)
 ```
 
 - Data Nitrogen Dioksida ($\text{NO}_2$)
 
 ```
-s5_co = connection.load_collection(
+# 1. Load data koleksi Sentinel-5P L2
+s5_no2 = connection.load_collection(
     "SENTINEL_5P_L2",
     temporal_extent=["2025-08-24", "2026-08-24"],
     spatial_extent={
@@ -155,36 +169,47 @@ s5_co = connection.load_collection(
     bands=["NO2"],
 )
 
-s5_co = s5_co.aggregate_temporal_period(reducer="mean", period="day")
-s5_co = s5_co.aggregate_spatial(reducer="mean", geometries=aoi)
+# 2. Agregasi temporal harian
+s5_no2 = s5_no2.aggregate_temporal_period(
+    period="day",
+    reducer="mean"
+)
 
-job_co = s5_co.execute_batch(
+# 3. Agregasi spasial sesuai dengan AOI yang sudah kamu definisikan sebelumnya
+s5_no2 = s5_no2.aggregate_spatial(
+    geometries=aoi,
+    reducer="mean"
+)
+
+# 4. Eksekusi batch job untuk menyimpan ke file NetCDF (.nc)
+job_no2 = s5_no2.execute_batch(
     title="Trowulan NO2 Extraction",
     outputfile="trowulan_no2.nc"
 )
 ```
 
 ```
-0:00:00 Job 'j-260917134625496091f98277863518d5': send 'start'
-0:00:04 Job 'j-260917134625496091f98277863518d5': created (progress 0%)
-0:00:10 Job 'j-260917134625496091f98277863518d5': queued (progress 0%)
-0:00:16 Job 'j-260917134625496091f98277863518d5': queued (progress 0%)
-0:00:24 Job 'j-260917134625496091f98277863518d5': queued (progress 0%)
-0:00:34 Job 'j-260917134625496091f98277863518d5': queued (progress 0%)
-0:00:47 Job 'j-260917134625496091f98277863518d5': queued (progress 0%)
-0:01:02 Job 'j-260917134625496091f98277863518d5': running (progress N/A)
-0:01:22 Job 'j-260917134625496091f98277863518d5': running (progress N/A)
-0:01:46 Job 'j-260917134625496091f98277863518d5': running (progress N/A)
-0:02:16 Job 'j-260917134625496091f98277863518d5': running (progress N/A)
-0:02:54 Job 'j-260917134625496091f98277863518d5': running (progress N/A)
-0:03:41 Job 'j-260917134625496091f98277863518d5': running (progress N/A)
-0:04:39 Job 'j-260917134625496091f98277863518d5': finished (progress 100%)
+0:00:00 Job 'j-26100216521846ecbd562346c1320c90': send 'start'
+0:00:03 Job 'j-26100216521846ecbd562346c1320c90': queued (progress 0%)
+0:00:08 Job 'j-26100216521846ecbd562346c1320c90': queued (progress 0%)
+0:00:15 Job 'j-26100216521846ecbd562346c1320c90': queued (progress 0%)
+0:00:23 Job 'j-26100216521846ecbd562346c1320c90': queued (progress 0%)
+0:00:33 Job 'j-26100216521846ecbd562346c1320c90': queued (progress 0%)
+0:00:45 Job 'j-26100216521846ecbd562346c1320c90': queued (progress 0%)
+0:01:01 Job 'j-26100216521846ecbd562346c1320c90': running (progress N/A)
+0:01:20 Job 'j-26100216521846ecbd562346c1320c90': running (progress N/A)
+0:01:44 Job 'j-26100216521846ecbd562346c1320c90': running (progress N/A)
+0:02:14 Job 'j-26100216521846ecbd562346c1320c90': running (progress N/A)
+0:02:51 Job 'j-26100216521846ecbd562346c1320c90': running (progress N/A)
+0:03:38 Job 'j-26100216521846ecbd562346c1320c90': running (progress N/A)
+0:04:37 Job 'j-26100216521846ecbd562346c1320c90': finished (progress 100%)
 ```
 
 - Data Sulfur Dioksida ($\text{SO}_2$)
 
 ```
-s5_co = connection.load_collection(
+# 1. Load data koleksi Sentinel-5P L2
+s5_so2 = connection.load_collection(
     "SENTINEL_5P_L2",
     temporal_extent=["2025-08-24", "2026-08-24"],
     spatial_extent={
@@ -196,36 +221,47 @@ s5_co = connection.load_collection(
     bands=["SO2"],
 )
 
-s5_co = s5_co.aggregate_temporal_period(reducer="mean", period="day")
-s5_co = s5_co.aggregate_spatial(reducer="mean", geometries=aoi)
+# 2. Agregasi temporal harian
+s5_so2 = s5_so2.aggregate_temporal_period(
+    period="day",
+    reducer="mean"
+)
 
-job_co = s5_co.execute_batch(
+# 3. Agregasi spasial sesuai dengan AOI yang sudah kamu definisikan sebelumnya
+s5_so2 = s5_so2.aggregate_spatial(
+    geometries=aoi,
+    reducer="mean"
+)
+
+# 4. Eksekusi batch job untuk menyimpan ke file NetCDF (.nc)
+job_so2 = s5_so2.execute_batch(
     title="Trowulan SO2 Extraction",
     outputfile="trowulan_so2.nc"
 )
 ```
 
 ```
-0:00:00 Job 'j-2609171352034c4bbf2bad8cff40991e': send 'start'
-0:00:03 Job 'j-2609171352034c4bbf2bad8cff40991e': created (progress 0%)
-0:00:08 Job 'j-2609171352034c4bbf2bad8cff40991e': queued (progress 0%)
-0:00:15 Job 'j-2609171352034c4bbf2bad8cff40991e': queued (progress 0%)
-0:00:23 Job 'j-2609171352034c4bbf2bad8cff40991e': queued (progress 0%)
-0:00:33 Job 'j-2609171352034c4bbf2bad8cff40991e': queued (progress 0%)
-0:00:46 Job 'j-2609171352034c4bbf2bad8cff40991e': queued (progress 0%)
-0:01:01 Job 'j-2609171352034c4bbf2bad8cff40991e': queued (progress 0%)
-0:01:20 Job 'j-2609171352034c4bbf2bad8cff40991e': queued (progress 0%)
-0:01:45 Job 'j-2609171352034c4bbf2bad8cff40991e': running (progress N/A)
-0:02:15 Job 'j-2609171352034c4bbf2bad8cff40991e': running (progress N/A)
-0:02:52 Job 'j-2609171352034c4bbf2bad8cff40991e': running (progress N/A)
-0:03:39 Job 'j-2609171352034c4bbf2bad8cff40991e': running (progress N/A)
-0:04:38 Job 'j-2609171352034c4bbf2bad8cff40991e': finished (progress 100%)
+0:00:00 Job 'j-2610021707244e95823bf06f61f78ad6': send 'start'
+0:00:04 Job 'j-2610021707244e95823bf06f61f78ad6': queued (progress 0%)
+0:00:09 Job 'j-2610021707244e95823bf06f61f78ad6': queued (progress 0%)
+0:00:15 Job 'j-2610021707244e95823bf06f61f78ad6': queued (progress 0%)
+0:00:24 Job 'j-2610021707244e95823bf06f61f78ad6': queued (progress 0%)
+0:00:34 Job 'j-2610021707244e95823bf06f61f78ad6': queued (progress 0%)
+0:00:46 Job 'j-2610021707244e95823bf06f61f78ad6': queued (progress 0%)
+0:01:01 Job 'j-2610021707244e95823bf06f61f78ad6': running (progress N/A)
+0:01:21 Job 'j-2610021707244e95823bf06f61f78ad6': running (progress N/A)
+0:01:45 Job 'j-2610021707244e95823bf06f61f78ad6': running (progress N/A)
+0:02:15 Job 'j-2610021707244e95823bf06f61f78ad6': running (progress N/A)
+0:02:52 Job 'j-2610021707244e95823bf06f61f78ad6': running (progress N/A)
+0:03:39 Job 'j-2610021707244e95823bf06f61f78ad6': running (progress N/A)
+0:04:38 Job 'j-2610021707244e95823bf06f61f78ad6': finished (progress 100%)
 ```
 
 - Data Metana ($\text{CH}_4$)
 
 ```
-s5_co = connection.load_collection(
+# 1. Load data koleksi Sentinel-5P L2
+s5_ch4 = connection.load_collection(
     "SENTINEL_5P_L2",
     temporal_extent=["2025-08-24", "2026-08-24"],
     spatial_extent={
@@ -237,29 +273,39 @@ s5_co = connection.load_collection(
     bands=["CH4"],
 )
 
-s5_co = s5_co.aggregate_temporal_period(reducer="mean", period="day")
-s5_co = s5_co.aggregate_spatial(reducer="mean", geometries=aoi)
+# 2. Agregasi temporal harian
+s5_ch4 = s5_ch4.aggregate_temporal_period(
+    period="day",
+    reducer="mean"
+)
 
-job_co = s5_co.execute_batch(
+# 3. Agregasi spasial sesuai dengan AOI yang sudah kamu definisikan sebelumnya
+s5_ch4 = s5_ch4.aggregate_spatial(
+    geometries=aoi,
+    reducer="mean"
+)
+
+# 4. Eksekusi batch job untuk menyimpan ke file NetCDF (.nc)
+job_ch4 = s5_ch4.execute_batch(
     title="Trowulan CH4 Extraction",
     outputfile="trowulan_ch4.nc"
 )
 ```
 
 ```
-0:00:00 Job 'j-2609171357004e41a50e46a4073ce9a3': send 'start'
-0:00:04 Job 'j-2609171357004e41a50e46a4073ce9a3': queued (progress 0%)
-0:00:09 Job 'j-2609171357004e41a50e46a4073ce9a3': queued (progress 0%)
-0:00:16 Job 'j-2609171357004e41a50e46a4073ce9a3': queued (progress 0%)
-0:00:24 Job 'j-2609171357004e41a50e46a4073ce9a3': queued (progress 0%)
-0:00:34 Job 'j-2609171357004e41a50e46a4073ce9a3': queued (progress 0%)
-0:00:46 Job 'j-2609171357004e41a50e46a4073ce9a3': queued (progress 0%)
-0:01:02 Job 'j-2609171357004e41a50e46a4073ce9a3': running (progress N/A)
-0:01:21 Job 'j-2609171357004e41a50e46a4073ce9a3': running (progress N/A)
-0:01:46 Job 'j-2609171357004e41a50e46a4073ce9a3': running (progress N/A)
-0:02:16 Job 'j-2609171357004e41a50e46a4073ce9a3': running (progress N/A)
-0:02:53 Job 'j-2609171357004e41a50e46a4073ce9a3': running (progress N/A)
-0:03:40 Job 'j-2609171357004e41a50e46a4073ce9a3': finished (progress 100%)
+0:00:00 Job 'j-2610021717474f46ac98038264c7bede': send 'start'
+0:00:02 Job 'j-2610021717474f46ac98038264c7bede': created (progress 0%)
+0:00:08 Job 'j-2610021717474f46ac98038264c7bede': queued (progress 0%)
+0:00:14 Job 'j-2610021717474f46ac98038264c7bede': queued (progress 0%)
+0:00:22 Job 'j-2610021717474f46ac98038264c7bede': queued (progress 0%)
+0:00:32 Job 'j-2610021717474f46ac98038264c7bede': running (progress N/A)
+0:00:45 Job 'j-2610021717474f46ac98038264c7bede': running (progress N/A)
+0:01:00 Job 'j-2610021717474f46ac98038264c7bede': running (progress N/A)
+0:01:19 Job 'j-2610021717474f46ac98038264c7bede': running (progress N/A)
+0:01:43 Job 'j-2610021717474f46ac98038264c7bede': running (progress N/A)
+0:02:14 Job 'j-2610021717474f46ac98038264c7bede': running (progress N/A)
+0:02:51 Job 'j-2610021717474f46ac98038264c7bede': running (progress N/A)
+0:03:38 Job 'j-2610021717474f46ac98038264c7bede': finished (progress 100%)
 ```
 
 ## 2.2 Eksplorasi Data
@@ -288,25 +334,252 @@ Lintang (Latitude): $7.525^\circ \text{ LS} - 7.615^\circ \text{ LS}$
 
 - Gambar Grafik
 
-![image](https://hackmd.io/_uploads/Byx8lX9tze.png)
-
+![image](https://hackmd.io/_uploads/Bk54Obgjzl.png)
 
 #### NO2
 - Gambar Grafik
 
-![image](https://hackmd.io/_uploads/Bkuvg75Kfl.png)
+![image](https://hackmd.io/_uploads/rJZPdZeizg.png)
 
 #### SO2
 - Gambar Grafik
 
-![image](https://hackmd.io/_uploads/Bk0OgmqYMg.png)
-
+![image](https://hackmd.io/_uploads/S1Hud-eoMg.png)
 
 #### CH4
 - Gambar Grafik
 
-![image](https://hackmd.io/_uploads/BJ1oe7cKfl.png)
+![image](https://hackmd.io/_uploads/H19K_bljGg.png)
 
+
+## 2.2.3 Identifikasi Missing Value
+
+#### CO
+
+```
+import pandas as pd
+
+# 1. Tentukan nama file
+file_path = 'trowulan_co_clean.csv'
+
+# Load data secara otomatis berdasarkan ekstensi file
+if file_path.endswith(('.xlsx', '.xls')):
+    df = pd.read_excel(file_path)
+else:
+    df = pd.read_csv(file_path)
+
+# 2. Hitung jumlah missing value
+missing_per_col = df.isnull().sum()
+total_missing = df.isnull().sum().sum()
+
+# 3. Tampilkan hasil
+print("=== JUMLAH MISSING VALUE ===")
+print(missing_per_col)
+print("-" * 30)
+print(f"Total seluruh missing value: {total_missing}")
+```
+
+```
+=== JUMLAH MISSING VALUE ===
+Tanggal      0
+CO         156
+dtype: int64
+------------------------------
+Total seluruh missing value: 156
+```
+
+#### NO2
+
+```
+import pandas as pd
+
+# 1. Tentukan nama file
+file_path = 'trowulan_no2_clean.csv'
+
+# Load data secara otomatis berdasarkan ekstensi file
+if file_path.endswith(('.xlsx', '.xls')):
+    df = pd.read_excel(file_path)
+else:
+    df = pd.read_csv(file_path)
+
+# 2. Hitung jumlah missing value
+missing_per_col = df.isnull().sum()
+total_missing = df.isnull().sum().sum()
+
+# 3. Tampilkan hasil
+print("=== JUMLAH MISSING VALUE ===")
+print(missing_per_col)
+print("-" * 30)
+print(f"Total seluruh missing value: {total_missing}")
+```
+
+```
+=== JUMLAH MISSING VALUE ===
+Tanggal      0
+NO2        207
+dtype: int64
+------------------------------
+Total seluruh missing value: 207
+```
+
+#### SO2
+
+```
+import pandas as pd
+
+# 1. Tentukan nama file
+file_path = 'trowulan_so2_clean.csv'
+
+# Load data secara otomatis berdasarkan ekstensi file
+if file_path.endswith(('.xlsx', '.xls')):
+    df = pd.read_excel(file_path)
+else:
+    df = pd.read_csv(file_path)
+
+# 2. Hitung jumlah missing value
+missing_per_col = df.isnull().sum()
+total_missing = df.isnull().sum().sum()
+
+# 3. Tampilkan hasil
+print("=== JUMLAH MISSING VALUE ===")
+print(missing_per_col)
+print("-" * 30)
+print(f"Total seluruh missing value: {total_missing}")
+```
+
+```
+=== JUMLAH MISSING VALUE ===
+Tanggal      0
+SO2        155
+dtype: int64
+------------------------------
+Total seluruh missing value: 155
+```
+
+#### CH4
+
+```
+import pandas as pd
+
+# 1. Tentukan nama file
+file_path = 'trowulan_ch4_clean.csv'
+
+# Load data secara otomatis berdasarkan ekstensi file
+if file_path.endswith(('.xlsx', '.xls')):
+    df = pd.read_excel(file_path)
+else:
+    df = pd.read_csv(file_path)
+
+# 2. Hitung jumlah missing value
+missing_per_col = df.isnull().sum()
+total_missing = df.isnull().sum().sum()
+
+# 3. Tampilkan hasil
+print("=== JUMLAH MISSING VALUE ===")
+print(missing_per_col)
+print("-" * 30)
+print(f"Total seluruh missing value: {total_missing}")
+```
+
+```
+=== JUMLAH MISSING VALUE ===
+Tanggal      0
+CH4        351
+dtype: int64
+------------------------------
+Total seluruh missing value: 351
+```
+
+## 2.2.3 Handling Missing Value dengan Imputasi Polinomial
+
+### Pengertian Imputasi Polinomial
+
+### Grafik setelah diimputasi
+
+#### CO
+
+![image](https://hackmd.io/_uploads/ByLT_Wgofg.png)
+
+#### NO2
+
+![image](https://hackmd.io/_uploads/Sy67FbeiGg.png)
+
+#### SO2
+
+![image](https://hackmd.io/_uploads/BytftWgoMe.png)
+
+#### CH4
+
+![image](https://hackmd.io/_uploads/HyQ_tWlsGx.png)
+
+
+### 2.2.6 Identifikasi Outlier dengan Ensemble (LOF + iForest + Z-Score)
+
+#### CO
+
+![image](https://hackmd.io/_uploads/rkonKWeszx.png)
+
+=== TABEL DETAIL VOTING ENSEMBLE OUTLIER ===
+| Tanggal | Nilai CO | Vote iForest | Vote LOF | Vote Z-Score | Total Votes |
+|---|---|---|---|---|---|
+| 2025-09-11 | 0.022415 | 1 | 1 | 0 | 2 |
+| 2025-10-09 | 0.045807 | 1 | 1 | 1 | 3 |
+| 2026-01-24 | 0.045807 | 0 | 1 | 1 | 2 |
+| 2026-01-25 | 0.045807 | 0 | 1 | 1 | 2 |
+| 2026-01-26 | 0.045807 | 0 | 1 | 1 | 2 |
+| 2026-01-27 | 0.045807 | 0 | 1 | 1 | 2 |
+| 2026-01-28 | 0.045807 | 0 | 1 | 1 | 2 |
+| 2026-01-29 | 0.045807 | 0 | 1 | 1 | 2 |
+| 2026-03-05 | 0.017936 | 1 | 1 | 0 | 2 |
+
+
+#### NO2
+
+![image](https://hackmd.io/_uploads/Hy35qZlsGg.png)
+
+=== TABEL DETAIL VOTING ENSEMBLE OUTLIER ===
+| Tanggal | Nilai NO2 | Vote iForest | Vote LOF | Vote Z-Score | Total Votes |
+|---|---|---|---|---|---|
+| 2025-08-25 | 0.000048 | 1 | 1 | 0 | 2 |
+| 2025-08-27 | 0.000090 | 1 | 0 | 1 | 2 |
+| 2025-08-28 | 0.000090 | 1 | 0 | 1 | 2 |
+| 2026-07-25 | 0.000083 | 1 | 1 | 0 | 2 |
+| 2026-08-13 | 0.000090 | 1 | 1 | 1 | 3 |
+
+
+#### SO2
+
+![image](https://hackmd.io/_uploads/ryEyjbgjGx.png)
+
+=== TABEL DETAIL VOTING ENSEMBLE OUTLIER ===
+| Tanggal | Nilai SO2 | Vote iForest | Vote LOF | Vote Z-Score | Total Votes |
+|---|---|---|---|---|---|
+| 2025-08-31 | -0.000969 | 1 | 1 | 1 | 3 |
+| 2026-05-07 | 0.000022 | 1 | 1 | 0 | 2 |
+| 2026-07-01 | 0.001138 | 1 | 0 | 1 | 2 |
+| 2026-07-17 | -0.000673 | 1 | 1 | 0 | 2 |
+| 2026-07-28 | -0.000994 | 1 | 1 | 1 | 3 |
+| 2026-07-29 | -0.000994 | 1 | 1 | 1 | 3 |
+| 2026-08-02 | -0.000696 | 1 | 1 | 0 | 2 |
+
+
+#### CH4
+
+![image](https://hackmd.io/_uploads/Sy0MjWeife.png)
+
+## 2.2.6 Handling Outlier dengan menggunakan Interpolasi Temporal
+
+#### CO
+
+![image](https://hackmd.io/_uploads/rkcSjbljGl.png)
+
+#### NO2
+
+![image](https://hackmd.io/_uploads/SJvUoZxsMl.png)
+
+#### SO2
+
+![image](https://hackmd.io/_uploads/BJ_wi-ejMl.png)
 
 ### 2.2.3 Pengertian Statistik Properti pada KNIME
 
@@ -373,285 +646,3 @@ Total keseluruhan jumlah baris data yang ada pada dataset untuk kolom tersebut. 
 16.  Histogram
 
 Representasi grafis dalam bentuk baris atau balok frekuensi yang membagi rentang data ke dalam beberapa interval (bins). Fungsinya untuk melihat bentuk riil dari distribusi data secara visual, mendeteksi modalitas (apakah data memiliki satu puncak, dua puncak, atau seragam), serta mengonfirmasi pola sebaran secara cepat.
-
-
-### 2.2.4 Hasil Statistik
-#### 2.2.4.1 CO
-
-| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness    | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
-|---------|---------|-------------|-------------|-------------|----------------|-------------|-------------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
-| feature | feature | 0           | 0           | 0           | 0              | 0           | 0           | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 311       |
-| co      | co      | 0.016392469 | 0.043462717 | 0.028582905 | 0.00352191     | 1.24038E-05 | 0.282370379 | 1.244630237 | 8.889283606 | 0            | 0        | 0         | 0         | 0.028294643 | 311       |
-| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0           | 0           | -2348.8275  | 0            | 0        | 0         | 0         | -7.5525     | 311       |
-| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0           | 0           | 34977.03488 | 0            | 0        | 0         | 0         | 112.4663501 | 311       |
-
-
-#### 2.2.4.2 NO2
-
-| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
-|---------|---------|-------------|-------------|-------------|----------------|-------------|----------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
-| feature | feature | 0           | 0           | 0           | 0              | 0           | 0        | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 259       |
-| no2     | no2     | 4.32534E-06 | 9.69946E-05 | 4.00385E-05 | 1.46836E-05    | 2.15608E-10 | 0.571741 | 0.624996046 | 0.010369981 | 0            | 0        | 0         | 0         | 3.96572E-05 | 259       |
-| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0        | 0           | -1956.0975  | 0            | 0        | 0         | 0         | -7.5525     | 259       |
-| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0        | 0           | 29128.78468 | 0            | 0        | 0         | 0         | 112.4663501 | 259       |
-
-
-#### 2.2.4.3 SO2
-
-| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness    | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
-|---------|---------|-------------|-------------|-------------|----------------|-------------|-------------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
-| feature | feature | 0           | 0           | 0           | 0              | 0           | 0           | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 291       |
-| so2     | so2     | -0.0003511  | 0.001175025 | 0.000139075 | 0.000199723    | 3.98891E-08 | 1.776471117 | 4.941146291 | 0.040470966 | 0            | 0        | 0         | 0         | 9.17392E-05 | 291       |
-| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0           | 0           | -2197.7775  | 0            | 0        | 0         | 0         | -7.5525     | 291       |
-| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0           | 0           | 32727.70788 | 0            | 0        | 0         | 0         | 112.4663501 | 291       |
-
-
-#### 2.2.4.4 CH4
-
-| row ID  | Column  | Min         | Max         | Mean        | Std. deviation | Variance    | Skewness     | Kurtosis    | Overall sum | No. missings | No. NaNs | No. +$\infty$s | No. -$\infty$s | Median      | Row count |
-|---------|---------|-------------|-------------|-------------|----------------|-------------|--------------|-------------|-------------|--------------|----------|-----------|-----------|-------------|-----------|
-| feature | feature | 0           | 0           | 0           | 0              | 0           | 0            | 0           | 0           | 0            | 0        | 0         | 0         | 0           | 62        |
-| ch4     | ch4     | 1834.913489 | 1935.768311 | 1893.221991 | 18.18395154    | 330.6560935 | -0.966599216 | 1.681297023 | 117379.7635 | 0            | 0        | 0         | 0         | 1894.209357 | 62        |
-| lat     | lat     | -7.5525     | -7.5525     | -7.5525     | 0              | 0           | 0            | 0           | -468.255    | 0            | 0        | 0         | 0         | -7.5525     | 62        |
-| lon     | lon     | 112.4663501 | 112.4663501 | 112.4663501 | 0              | 0           | 0            | 0           | 6972.913707 | 0            | 0        | 0         | 0         | 112.4663501 | 62        |
-
-
-### 2.2.5 Identifikasi Missing Value
-
-#### CO
-
-```
-import pandas as pd
-
-# 1. Tentukan nama file yang ada di folder Google Colab kamu
-file_path = 'trowulan_co.xlsx'  # Ganti dengan nama file kamu (misal: 'data.xlsx' atau 'data.csv')
-
-# Load data secara otomatis berdasarkan ekstensi file
-if file_path.endswith(('.xlsx', '.xls')):
-    df = pd.read_excel(file_path)
-else:
-    df = pd.read_csv(file_path)
-
-# 2. Cek ringkasan jumlah missing value per kolom
-print("=== RINGKASAN MISSING VALUE PER KOLOM ===")
-missing_summary = df.isnull().sum()
-missing_summary = missing_summary[missing_summary > 0]
-
-if missing_summary.empty:
-    print("Dataset bersih! Tidak ditemukan missing value.")
-else:
-    print(missing_summary)
-    print("\n" + "="*45 + "\n")
-
-    # 3. Identifikasi lokasi persis (Baris & Kolom) dari data yang kosong
-    missing_matrix = df.isna().stack()
-    missing_locations = missing_matrix[missing_matrix].index.tolist()
-
-    print("=== DETAIL LOKASI MISSING VALUE (BARIS & KOLOM) ===")
-    for row_idx, col_name in missing_locations:
-        # Menampilkan index baris (0-indexed) dan nama kolomnya
-        print(f"Baris (index): {row_idx:<5} | Kolom: '{col_name}'")
-```
-
-```
-=== RINGKASAN MISSING VALUE PER KOLOM ===
-Dataset bersih! Tidak ditemukan missing value.
-```
-
-#### NO2
-
-```
-import pandas as pd
-
-# 1. Tentukan nama file yang ada di folder Google Colab kamu
-file_path = 'trowulan_no2.xlsx'  # Ganti dengan nama file kamu (misal: 'data.xlsx' atau 'data.csv')
-
-# Load data secara otomatis berdasarkan ekstensi file
-if file_path.endswith(('.xlsx', '.xls')):
-    df = pd.read_excel(file_path)
-else:
-    df = pd.read_csv(file_path)
-
-# 2. Cek ringkasan jumlah missing value per kolom
-print("=== RINGKASAN MISSING VALUE PER KOLOM ===")
-missing_summary = df.isnull().sum()
-missing_summary = missing_summary[missing_summary > 0]
-
-if missing_summary.empty:
-    print("Dataset bersih! Tidak ditemukan missing value.")
-else:
-    print(missing_summary)
-    print("\n" + "="*45 + "\n")
-
-    # 3. Identifikasi lokasi persis (Baris & Kolom) dari data yang kosong
-    missing_matrix = df.isna().stack()
-    missing_locations = missing_matrix[missing_matrix].index.tolist()
-
-    print("=== DETAIL LOKASI MISSING VALUE (BARIS & KOLOM) ===")
-    for row_idx, col_name in missing_locations:
-        # Menampilkan index baris (0-indexed) dan nama kolomnya
-        print(f"Baris (index): {row_idx:<5} | Kolom: '{col_name}'")
-```
-
-```
-=== RINGKASAN MISSING VALUE PER KOLOM ===
-Dataset bersih! Tidak ditemukan missing value.
-```
-
-#### SO2
-
-```
-import pandas as pd
-
-# 1. Tentukan nama file yang ada di folder Google Colab kamu
-file_path = 'trowulan_so2.xlsx'  # Ganti dengan nama file kamu (misal: 'data.xlsx' atau 'data.csv')
-
-# Load data secara otomatis berdasarkan ekstensi file
-if file_path.endswith(('.xlsx', '.xls')):
-    df = pd.read_excel(file_path)
-else:
-    df = pd.read_csv(file_path)
-
-# 2. Cek ringkasan jumlah missing value per kolom
-print("=== RINGKASAN MISSING VALUE PER KOLOM ===")
-missing_summary = df.isnull().sum()
-missing_summary = missing_summary[missing_summary > 0]
-
-if missing_summary.empty:
-    print("Dataset bersih! Tidak ditemukan missing value.")
-else:
-    print(missing_summary)
-    print("\n" + "="*45 + "\n")
-
-    # 3. Identifikasi lokasi persis (Baris & Kolom) dari data yang kosong
-    missing_matrix = df.isna().stack()
-    missing_locations = missing_matrix[missing_matrix].index.tolist()
-
-    print("=== DETAIL LOKASI MISSING VALUE (BARIS & KOLOM) ===")
-    for row_idx, col_name in missing_locations:
-        # Menampilkan index baris (0-indexed) dan nama kolomnya
-        print(f"Baris (index): {row_idx:<5} | Kolom: '{col_name}'")
-```
-
-```
-=== RINGKASAN MISSING VALUE PER KOLOM ===
-Dataset bersih! Tidak ditemukan missing value.
-```
-
-#### CH4
-
-```
-import pandas as pd
-
-# 1. Tentukan nama file yang ada di folder Google Colab kamu
-file_path = 'trowulan_ch4.xlsx'  # Ganti dengan nama file kamu (misal: 'data.xlsx' atau 'data.csv')
-
-# Load data secara otomatis berdasarkan ekstensi file
-if file_path.endswith(('.xlsx', '.xls')):
-    df = pd.read_excel(file_path)
-else:
-    df = pd.read_csv(file_path)
-
-# 2. Cek ringkasan jumlah missing value per kolom
-print("=== RINGKASAN MISSING VALUE PER KOLOM ===")
-missing_summary = df.isnull().sum()
-missing_summary = missing_summary[missing_summary > 0]
-
-if missing_summary.empty:
-    print("Dataset bersih! Tidak ditemukan missing value.")
-else:
-    print(missing_summary)
-    print("\n" + "="*45 + "\n")
-
-    # 3. Identifikasi lokasi persis (Baris & Kolom) dari data yang kosong
-    missing_matrix = df.isna().stack()
-    missing_locations = missing_matrix[missing_matrix].index.tolist()
-
-    print("=== DETAIL LOKASI MISSING VALUE (BARIS & KOLOM) ===")
-    for row_idx, col_name in missing_locations:
-        # Menampilkan index baris (0-indexed) dan nama kolomnya
-        print(f"Baris (index): {row_idx:<5} | Kolom: '{col_name}'")
-```
-
-```
-=== RINGKASAN MISSING VALUE PER KOLOM ===
-Dataset bersih! Tidak ditemukan missing value.
-```
-
-
-### 2.2.6 Identifikasi Outlier dengan Ensemble (LOF + iForest + KNN)
-
-#### CO
-
-![image](https://hackmd.io/_uploads/rkjZKIqFzl.png)
-
-=== TABEL DETAIL VOTING ENSEMBLE OUTLIER ===
-| No | Waktu (t) | Nilai CO | LOF | iForest | KNN | Total Votes |
-|---|---|---|---|---|---|---|
-| 11 | 2025-09-10 | 0.024729 | 1 | 1 | 1 | 3 |
-| 30 | 2025-10-04 | 0.041510 | 0 | 1 | 1 | 2 |
-| 34 | 2025-10-09 | 0.045807 | 1 | 1 | 1 | 3 |
-| 35 | 2025-10-10 | 0.033770 | 1 | 1 | 1 | 3 |
-| 84 | 2026-03-05 | 0.017936 | 1 | 1 | 1 | 3 |
-| 87 | 2026-03-12 | 0.021963 | 0 | 1 | 1 | 2 |
-| 92 | 2026-03-21 | 0.020576 | 1 | 1 | 1 | 3 |
-
-
-#### NO2
-
-![image](https://hackmd.io/_uploads/r1gOU9LqFzx.png)
-
-=== TABEL DETAIL VOTING ENSEMBLE OUTLIER ===
-| No | Waktu (t) | Nilai NO2 | LOF | iForest | KNN | Total Votes |
-|---|---|---|---|---|---|---|
-| 1 | 2025-08-26 | 0.000078 | 1 | 1 | 1 | 3 |
-| 43 | 2025-12-16 | 0.000011 | 1 | 1 | 1 | 3 |
-| 141 | 2026-07-25 | 0.000083 | 1 | 1 | 1 | 3 |
-| 152 | 2026-08-13 | 0.000090 | 1 | 1 | 1 | 3 |
-| 153 | 2026-08-14 | 0.000048 | 1 | 1 | 1 | 3 |
-
-
-#### SO2
-
-![image](https://hackmd.io/_uploads/BkPcq89FMe.png)
-
-=== TABEL DETAIL VOTING ENSEMBLE OUTLIER ===
-| No | Waktu (t) | Nilai SO2 | LOF | iForest | KNN | Total Votes |
-|---|---|---|---|---|---|---|
-| 5 | 2025-08-31 | -0.000969 | 1 | 1 | 1 | 3 |
-| 6 | 2025-09-01 | 0.000068 | 1 | 0 | 1 | 2 |
-| 164 | 2026-07-01 | 0.001138 | 0 | 1 | 1 | 2 |
-| 178 | 2026-07-17 | -0.000673 | 1 | 1 | 1 | 3 |
-| 189 | 2026-07-28 | -0.000994 | 1 | 1 | 1 | 3 |
-| 190 | 2026-08-01 | -0.000122 | 1 | 1 | 1 | 3 |
-| 191 | 2026-08-02 | -0.000696 | 1 | 1 | 1 | 3 |
-
-
-#### CH4
-
-![image](https://hackmd.io/_uploads/Hk3C9U9Yze.png)
-
-=== TABEL DETAIL VOTING ENSEMBLE OUTLIER ===
-| No | Waktu (t) | Nilai CH4 | LOF | iForest | KNN | Total Votes |
-|---|---|---|---|---|---|---|
-| 1 | 2025-09-03 | 1855.129883 | 0 | 1 | 1 | 2 |
-
-
-### Handling Outlier dengan menggunakan Rolling Median Imputation
-
-#### CO
-
-![image](https://hackmd.io/_uploads/HJ8hyOoFfx.png)
-
-#### NO2
-
-![image](https://hackmd.io/_uploads/Hyd-guoKMe.png)
-
-#### SO2
-
-![image](https://hackmd.io/_uploads/H1fNe_sFGg.png)
-
-#### CH4
-
-![image](https://hackmd.io/_uploads/ryaSlujFMg.png)
-
