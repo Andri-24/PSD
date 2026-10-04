@@ -490,7 +490,7 @@ dtype: int64
 Total seluruh missing value: 351
 ```
 
-## 2.2.3 Handling Missing Value dengan Imputasi Polinomial
+## 2.2.4 Handling Missing Value dengan Imputasi Polinomial
 
 ### Pengertian Imputasi Polinomial
 
@@ -513,7 +513,7 @@ Total seluruh missing value: 351
 ![image](https://hackmd.io/_uploads/HyQ_tWlsGx.png)
 
 
-### 2.2.6 Identifikasi Outlier dengan Ensemble (LOF + iForest + Z-Score)
+## 2.2.5 Identifikasi Outlier dengan Ensemble (LOF + iForest + Z-Score)
 
 #### CO
 
