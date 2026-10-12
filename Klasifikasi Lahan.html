@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Klasifikasi Lahan';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -416,10 +418,26 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#businness-understanding">Businness Understanding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#businness-understanding">Businness Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang-masalah">Latar Belakang &amp; Masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">Tujuan Proyek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemanfaatan-hasil">Pemanfaatan Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-citra-satelit">Dataset Citra Satelit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-komposisi-fungsi-band-sentinel-2a">Rincian Komposisi &amp; Fungsi Band Sentinel-2A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-spektral-tambahan-ekstraksi-fitur-obia">Fitur Spektral Tambahan (Ekstraksi Fitur OBIA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-poligon-roi-region-of-interest">Data Poligon ROI (Region of Interest)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">Evaluasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-model-svm">Performa Model SVM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akurasi">Hasil Akurasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-performa-confusion-matrix">Analisis Performa &amp; Confusion Matrix</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -435,14 +453,107 @@
 <h1>Klasifikasi Lahan<a class="headerlink" href="#klasifikasi-lahan" title="Link to this heading">#</a></h1>
 <section id="businness-understanding">
 <h2>Businness Understanding<a class="headerlink" href="#businness-understanding" title="Link to this heading">#</a></h2>
+<section id="latar-belakang-masalah">
+<h3>Latar Belakang &amp; Masalah<a class="headerlink" href="#latar-belakang-masalah" title="Link to this heading">#</a></h3>
+<p>Pemetaan tutupan lahan di wilayah Kabupaten Banyuwangi sangat penting untuk perencanaan wilayah, pemantauan kawasan hutan, dan analisis tata ruang pertanian serta pemukiman. Metode manual melalui visualisasi lapangan membutuhkan waktu lama dan biaya besar. Penggunaan citra satelit resolusi menengah seperti Sentinel-2A memungkinkan otomatisasi pemetaan tutupan lahan secara cepat dan terstruktur.</p>
+</section>
+<section id="tujuan-proyek">
+<h3>Tujuan Proyek<a class="headerlink" href="#tujuan-proyek" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Membangun sistem klasifikasi tutupan lahan berbasis objek (<em>Object-Based Image Analysis / OBIA</em>) menggunakan algoritma <strong>Support Vector Machine (SVM)</strong>.</p></li>
+<li><p>Mengklasifikasikan wilayah studi ke dalam 5 kelas utama: <strong>Bangunan</strong>, <strong>Hutan</strong>, <strong>Pertanian</strong>, <strong>Perairan</strong>, dan <strong>Mangrove</strong>.</p></li>
+<li><p>Menghasilkan luaran data spasial berformat GeoJSON per kelas yang telah ditransformasi ke standar WGS84 (<code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code>) agar siap diintegrasikan ke dalam platform Web GIS.</p></li>
+</ul>
+</section>
+<section id="pemanfaatan-hasil">
+<h3>Pemanfaatan Hasil<a class="headerlink" href="#pemanfaatan-hasil" title="Link to this heading">#</a></h3>
+<p>Data GeoJSON yang dihasilkan dari model SVM ini digunakan sebagai layer interaktif pada aplikasi Web GIS berbasis Leaflet.js untuk mempermudah visualisasi dan pemantauan tata ruang secara digital.</p>
+</section>
 </section>
 <section id="data-understanding">
 <h2>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<section id="dataset-citra-satelit">
+<h3>Dataset Citra Satelit<a class="headerlink" href="#dataset-citra-satelit" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Sumber Data</strong>: Citra Satelit Sentinel-2A (AOI Kabupaten Banyuwangi) dari Copernicus Data Space Ecosystem.</p></li>
+<li><p><strong>Rentang Waktu Akuisisi</strong>: <strong>11 September 2026 s.d. 11 Oktober 2026</strong> (<em>Time Range Filter</em> saat <em>download</em>).</p></li>
+<li><p><strong>Sistem Proyeksi</strong>: <code class="docutils literal notranslate"><span class="pre">EPSG:32749</span></code> (UTM Zone 49S).</p></li>
+<li><p><strong>Dimensi Citra</strong>: 8235 x 8235 piksel[cite: 9].</p></li>
+<li><p><strong>Resolusi Spasial</strong>: <span class="math notranslate nohighlight">\(13.33 \text{ meter/piksel}\)</span>.</p></li>
+</ul>
+</section>
+<section id="rincian-komposisi-fungsi-band-sentinel-2a">
+<h3>Rincian Komposisi &amp; Fungsi Band Sentinel-2A<a class="headerlink" href="#rincian-komposisi-fungsi-band-sentinel-2a" title="Link to this heading">#</a></h3>
+<p>Penggunaan 6 band spesifik ini dipilih secara terukur untuk menjaga efisiensi computational dan resolusi spasial yang tajam:</p>
+<ul class="simple">
+<li><p><strong>B02 - Blue (Biru - <span class="math notranslate nohighlight">\(490\text{ nm}\)</span>)</strong></p>
+<ul>
+<li><p><strong>Fungsi Utama</strong>: Memisahkan tanah dari vegetasi serta melakukan penetrasi dasar perairan dangkal.</p></li>
+<li><p><strong>Alasan Penggunaan</strong>: Peka terhadap hamburan atmosfer dan pemetaan kualitas air/kedalaman perairan untuk membedakan kelas <strong>Perairan</strong> dari objek daratan.</p></li>
+</ul>
+</li>
+<li><p><strong>B03 - Green (Hijau - <span class="math notranslate nohighlight">\(560\text{ nm}\)</span>)</strong></p>
+<ul>
+<li><p><strong>Fungsi Utama</strong>: Mengukur puncak reflektansi klorofil pada tumbuhan.</p></li>
+<li><p><strong>Alasan Penggunaan</strong>: Krusial untuk memisahkan vegetasi dengan objek non-vegetasi serta merupakan komponen penyusun kalkulasi <strong>NDWI</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>B04 - Red (Merah - <span class="math notranslate nohighlight">\(665\text{ nm}\)</span>)</strong></p>
+<ul>
+<li><p><strong>Fungsi Utama</strong>: Mengukur penyerapan klorofil utama.</p></li>
+<li><p><strong>Alasan Penggunaan</strong>: Penyerapan kuat pada gelombang merah oleh vegetasi sehat menjadi komponen penyusun Indeks <strong>NDVI</strong> untuk membedakan <strong>Hutan</strong>, <strong>Pertanian</strong>, dan <strong>Bangunan</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>B08 - NIR / Near Infrared (Inframerah Dekat - <span class="math notranslate nohighlight">\(842\text{ nm}\)</span>)</strong></p>
+<ul>
+<li><p><strong>Fungsi Utama</strong>: Mendeteksi struktur seluler daun dan kerapatan kanopi.</p></li>
+<li><p><strong>Alasan Penggunaan</strong>: Memantulkan gelombang NIR sangat kuat sehingga vital dalam membedakan kerapatan <strong>Hutan</strong> dari <strong>Mangrove</strong> atau <strong>Pertanian</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>B11 - SWIR1 (Shortwave Infrared 1 - <span class="math notranslate nohighlight">\(1610\text{ nm}\)</span>)</strong></p>
+<ul>
+<li><p><strong>Fungsi Utama</strong>: Mendeteksi kandungan air pada kanopi tanaman serta tingkat kelembapan tanah dan material bangunan.</p></li>
+<li><p><strong>Alasan Penggunaan</strong>: Responsif terhadap lahan terbangun dan digunakan bersama NIR untuk menghitung <strong>NDBI</strong> guna memisahkan <strong>Bangunan</strong> dari pertanian.</p></li>
+</ul>
+</li>
+<li><p><strong>B12 - SWIR2 (Shortwave Infrared 2 - <span class="math notranslate nohighlight">\(2190\text{ nm}\)</span>)</strong></p>
+<ul>
+<li><p><strong>Fungsi Utama</strong>: Membedakan kandungan mineral tanah, kelembapan, serta tipe vegetasi berkayu.</p></li>
+<li><p><strong>Alasan Penggunaan</strong>: Memberikan kontras spektral tambahan untuk memisahkan area <strong>Hutan</strong> lebat dan <strong>Mangrove</strong> dari vegetasi musiman/pertanian kering.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="fitur-spektral-tambahan-ekstraksi-fitur-obia">
+<h3>Fitur Spektral Tambahan (Ekstraksi Fitur OBIA)<a class="headerlink" href="#fitur-spektral-tambahan-ekstraksi-fitur-obia" title="Link to this heading">#</a></h3>
+<p>Untuk meningkatkan akurasi pemisahan objek, dilakukan kalkulasi 3 indeks spektral dan ekstraksi fitur statistik per poligon:</p>
+<ol class="arabic simple">
+<li><p><strong>Indeks Spektral</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{NDVI} = \frac{\text{B08} - \text{B04}}{\text{B08} + \text{B04}}\)</span> (Memisah Vegetasi vs Non-Vegetasi)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{NDWI} = \frac{\text{B03} - \text{B08}}{\text{B03} + \text{B08}}\)</span> (Memisah Perairan vs Daratan)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{NDBI} = \frac{\text{B11} - \text{B08}}{\text{B11} + \text{B08}}\)</span> (Memisah Bangunan vs Lahan Terbuka/Pertanian)</p></li>
+</ul>
+</li>
+<li><p><strong>Statistik Poligon</strong>: Nilai Rata-rata (<em>Mean</em>) dan Standar Deviasi (<em>Standard Deviation</em>) dari seluruh band dan indeks spektral dihitung menggunakan pendekatan <em>Zonal Statistics</em> untuk menangkap tekstur dan heterogenitas objek. Total digunakan <strong>18 fitur spektral &amp; tekstur</strong>.</p></li>
+</ol>
+</section>
+<section id="data-poligon-roi-region-of-interest">
+<h3>Data Poligon ROI (Region of Interest)<a class="headerlink" href="#data-poligon-roi-region-of-interest" title="Link to this heading">#</a></h3>
+<p>Data acuan (<em>ground truth</em>) berasal dari file <code class="docutils literal notranslate"><span class="pre">banyuwangi.geojson</span></code> dengan total <strong>4072 Poligon</strong>:</p>
+<ul class="simple">
+<li><p><strong>Bangunan</strong>: 2085 poligon</p></li>
+<li><p><strong>Hutan</strong>: 1164 poligon</p></li>
+<li><p><strong>Pertanian</strong>: 685 poligon</p></li>
+<li><p><strong>Perairan</strong>: 112 poligon</p></li>
+<li><p><strong>Mangrove</strong>: 26 poligon</p></li>
+</ul>
+</section>
 </section>
 <section id="modeling">
 <h2>Modeling<a class="headerlink" href="#modeling" title="Link to this heading">#</a></h2>
 <iframe 
-  src="https://andri-24.github.io/klasifikasi_lahan_banyuwangi/" 
+  src=" https://andri-24.github.io/klasifikasi_lahan_banyuwangi//" 
   width="100%" 
   height="500px" 
   style="border: 1px solid #ccc; border-radius: 8px;">
@@ -450,24 +561,176 @@
 </section>
 <section id="evaluasi">
 <h2>Evaluasi<a class="headerlink" href="#evaluasi" title="Link to this heading">#</a></h2>
-<p>digit ulang jadi pertanian(farmland), bangunan(buildup), perairan(waterbody), hutan(forest), mangrove</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># alur</span>
-<span class="n">berikan</span> <span class="n">businness</span> <span class="n">understanding</span>
-<span class="n">berikan</span> <span class="n">penjelasan</span> <span class="n">tujuan</span> <span class="n">mengapa</span> <span class="n">perlu</span> <span class="n">digunakan</span> <span class="n">untuk</span> <span class="n">land</span> <span class="n">use</span> <span class="n">dan</span> <span class="n">land</span> <span class="n">clasification</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Tentukan Path File</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/tugas_psd&#39;</span>
+<span class="n">raster_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s1">&#39;sentinel2_banyuwangi_aoi.tif&#39;</span><span class="p">)</span>
+<span class="n">geojson_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s1">&#39;banyuwangi.geojson&#39;</span><span class="p">)</span>
 
-<span class="n">data</span> <span class="n">understanding</span>
-<span class="n">penjelasan</span> <span class="n">dan</span> <span class="n">pengambilan</span> <span class="n">band</span>
+<span class="n">tif_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s1">&#39;*.tif&#39;</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">tif_files</span><span class="p">:</span>
+    <span class="n">raster_path</span> <span class="o">=</span> <span class="n">tif_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">modeling</span>
-<span class="n">model</span> <span class="n">apa</span> <span class="n">yang</span> <span class="n">dipakai</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;              INFORMASI METADATA &amp; DATASET&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
 
-<span class="n">evaluasi</span> <span class="n">hasil</span> <span class="n">model</span>
+<span class="c1"># 3. Baca Informasi Citra &amp; Band</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">raster_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">bands_count</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">count</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span>
+    <span class="n">crs_raster</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">res</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+    <span class="n">img_data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
-<span class="n">dideploy</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File Raster       : </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">raster_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dimensi Peta      : </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2"> piksel&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah Band Utama : </span><span class="si">{</span><span class="n">bands_count</span><span class="si">}</span><span class="s2"> Band&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Daftar Band Digunakan:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  • Band 1: B02 (Blue)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  • Band 2: B03 (Green)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  • Band 3: B04 (Red)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  • Band 4: B08 (NIR - Near Infrared)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  • Band 5: B11 (SWIR1 - Shortwave Infrared 1)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  • Band 6: B12 (SWIR2 - Shortwave Infrared 2)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  • Indeks Tambahan: NDVI, NDWI, NDBI (Total 9 Fitur Spektral)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sistem Koordinat  : </span><span class="si">{</span><span class="n">crs_raster</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Resolusi Spasial  : </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> meter/piksel&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4. Baca Informasi GeoJSON &amp; Kelas</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">geojson_path</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="o">!=</span> <span class="n">crs_raster</span><span class="p">:</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs_raster</span><span class="p">)</span>
+
+<span class="n">name_col</span> <span class="o">=</span> <span class="s1">&#39;class_name&#39;</span> <span class="k">if</span> <span class="s1">&#39;class_name&#39;</span> <span class="ow">in</span> <span class="n">gdf</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="p">(</span><span class="s1">&#39;REMARK&#39;</span> <span class="k">if</span> <span class="s1">&#39;REMARK&#39;</span> <span class="ow">in</span> <span class="n">gdf</span><span class="o">.</span><span class="n">columns</span> <span class="k">else</span> <span class="n">gdf</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;              INFORMASI SAMPLING POLIGON (ROI)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File Vector       : </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">geojson_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Poligon ROI : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span><span class="si">}</span><span class="s2"> Poligon&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sebaran Poligon per Kelas:&quot;</span><span class="p">)</span>
+<span class="n">class_counts</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">name_col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">cls_name</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">class_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  • </span><span class="si">{</span><span class="n">cls_name</span><span class="si">:</span><span class="s2">&lt;25</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> poligon&quot;</span><span class="p">)</span>
+
+<span class="c1"># 5. Hitung Indeks Spektral &amp; Ekstraksi Fitur (Zonal Stats)</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-10</span>
+<span class="n">b03</span><span class="p">,</span> <span class="n">b04</span><span class="p">,</span> <span class="n">b08</span><span class="p">,</span> <span class="n">b11</span> <span class="o">=</span> <span class="n">img_data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img_data</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">img_data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">img_data</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">b08</span> <span class="o">-</span> <span class="n">b04</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">b08</span> <span class="o">+</span> <span class="n">b04</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+<span class="n">ndwi</span> <span class="o">=</span> <span class="p">(</span><span class="n">b03</span> <span class="o">-</span> <span class="n">b08</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">b03</span> <span class="o">+</span> <span class="n">b08</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+<span class="n">ndbi</span> <span class="o">=</span> <span class="p">(</span><span class="n">b11</span> <span class="o">-</span> <span class="n">b08</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">b11</span> <span class="o">+</span> <span class="n">b08</span> <span class="o">+</span> <span class="n">eps</span><span class="p">)</span>
+
+<span class="n">stacked_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">img_data</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">ndwi</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">ndbi</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]])</span>
+<span class="n">total_bands</span> <span class="o">=</span> <span class="n">stacked_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;            MEMPROSES EVALUASI HASIL AKURASI&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="n">stats_per_band</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_bands</span><span class="p">):</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">zonal_stats</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">stacked_img</span><span class="p">[</span><span class="n">b</span><span class="p">],</span> <span class="n">affine</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">])</span>
+    <span class="n">stats_per_band</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+
+<span class="n">X_list</span><span class="p">,</span> <span class="n">valid_indices</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gdf</span><span class="p">)):</span>
+    <span class="n">c_name</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">name_col</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">c_name</span><span class="p">):</span> <span class="k">continue</span>
+
+    <span class="n">feat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">has_nan</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_bands</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">stats_per_band</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">stats_per_band</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">idx</span><span class="p">][</span><span class="s1">&#39;std&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">s</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="n">has_nan</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">break</span>
+        <span class="n">feat</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_nan</span><span class="p">:</span>
+        <span class="n">X_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span>
+        <span class="n">valid_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_list</span><span class="p">)</span>
+<span class="n">gdf_valid</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">valid_indices</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">gdf_valid</span><span class="p">[</span><span class="n">name_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># 6. Split, Train, &amp; Evaluasi Model SVM</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;svc&#39;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">))])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">HASIL AKURASI MODEL (SVM): </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Laporan Performa per Kelas (Classification Report):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>tampilkan dalam bentuk layer klasifikasi dibawahnya layar satelit</p>
-<p>pembuatan peta lahan menggunakan leaflet berdasarkan klasifikasi yang dihasilkan dari sentinel 2A</p>
+<section id="performa-model-svm">
+<h3>Performa Model SVM<a class="headerlink" href="#performa-model-svm" title="Link to this heading">#</a></h3>
+<p>Model yang digunakan adalah <strong>Support Vector Machine (SVM)</strong> dengan arsitektur pipeline:</p>
+<ul class="simple">
+<li><p><strong>Preprocessing</strong>: <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> (Penskalaan nilai fitur agar seimbang).</p></li>
+<li><p><strong>Kernel</strong>: Radial Basis Function (<code class="docutils literal notranslate"><span class="pre">RBF</span></code>).</p></li>
+<li><p><strong>Parameter</strong>: <span class="math notranslate nohighlight">\(C = 10.0\)</span>, <span class="math notranslate nohighlight">\(\gamma = \text{'scale'}\)</span>.</p></li>
+</ul>
+</section>
+<section id="hasil-akurasi">
+<h3>Hasil Akurasi<a class="headerlink" href="#hasil-akurasi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Overall Accuracy</strong>: <strong>72.66%</strong>[cite: 9]</p></li>
+</ul>
+</section>
+<section id="analisis-performa-confusion-matrix">
+<h3>Analisis Performa &amp; Confusion Matrix<a class="headerlink" href="#analisis-performa-confusion-matrix" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Peningkatan Performa</strong>: Penggunaan pendekatan berbasis poligon (<em>OBIA</em>) yang dikombinasikan dengan fitur tekstur (<em>std</em>) dan penskalaan fitur (<code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>) terbukti efektif memisahkan area yang bertekstur heterogen seperti Bangunan dari area yang homogen seperti Perairan dan Hutan.</p></li>
+<li><p><strong>Ketidakseimbangan Data (<em>Class Imbalance</em>)</strong>: Sebagian besar kesalahan klasifikasi (<em>misclassification</em>) terjadi pada kelas minoritas seperti Mangrove (26 poligon) dan Perairan (112 poligon) yang terprediksi sebagai Hutan atau Pertanian akibat dominasi sampel kelas Bangunan dan Hutan.</p></li>
+<li><p><strong>Efisiensi Waktu</strong>: Pemrosesan fitur berbasis <em>Zonal Stats</em> berhasil memangkas waktu ekstraksi dari puluhan menit menjadi hanya hitungan detik tanpa memicu masalah kapasitas memori (RAM).</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>============================================================
+              INFORMASI METADATA &amp; DATASET
+============================================================
+File Raster       : sentinel2_banyuwangi_aoi.tif
+Dimensi Peta      : 8235 x 8235 piksel
+Jumlah Band Utama : 6 Band
+Daftar Band Digunakan:
+  • Band 1: B02 (Blue)
+  • Band 2: B03 (Green)
+  • Band 3: B04 (Red)
+  • Band 4: B08 (NIR - Near Infrared)
+  • Band 5: B11 (SWIR1 - Shortwave Infrared 1)
+  • Band 6: B12 (SWIR2 - Shortwave Infrared 2)
+  • Indeks Tambahan: NDVI, NDWI, NDBI (Total 9 Fitur Spektral)
+Sistem Koordinat  : EPSG:32749
+Resolusi Spasial  : 13.333333333333334 x 13.333333333333334 meter/piksel
+
+------------------------------------------------------------
+              INFORMASI SAMPLING POLIGON (ROI)
+------------------------------------------------------------
+File Vector       : banyuwangi.geojson
+Total Poligon ROI : 4072 Poligon
+
+Sebaran Poligon per Kelas:
+  • Bangunan                 : 2085 poligon
+  • Hutan                    : 1164 poligon
+  • Pertanian                : 685 poligon
+  • Perairan                 : 112 poligon
+  • Mangrove                 : 26 poligon
+
+============================================================
+            MEMPROSES EVALUASI HASIL AKURASI
+============================================================
+/usr/local/lib/python3.13/dist-packages/rasterstats/io.py:437: NodataWarning: Setting nodata to -999; specify nodata explicitly
+  warnings.warn(
+
+HASIL AKURASI MODEL (SVM): 72.66%
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -528,10 +791,26 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#businness-understanding">Businness Understanding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#businness-understanding">Businness Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang-masalah">Latar Belakang &amp; Masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">Tujuan Proyek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemanfaatan-hasil">Pemanfaatan Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-citra-satelit">Dataset Citra Satelit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-komposisi-fungsi-band-sentinel-2a">Rincian Komposisi &amp; Fungsi Band Sentinel-2A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-spektral-tambahan-ekstraksi-fitur-obia">Fitur Spektral Tambahan (Ekstraksi Fitur OBIA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-poligon-roi-region-of-interest">Data Poligon ROI (Region of Interest)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">Evaluasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi">Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performa-model-svm">Performa Model SVM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akurasi">Hasil Akurasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-performa-confusion-matrix">Analisis Performa &amp; Confusion Matrix</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
